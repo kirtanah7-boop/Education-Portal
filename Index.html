@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond The Limit | Academy 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0c;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(30, 30, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .purple-gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        }
+
+        .price-card {
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.3);
+        }
+
+        .cart-sidebar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+        .pulse { animation: pulse-purple 2s infinite; }
+
+        .tab-active {
+            border-bottom: 2px solid #7c3aed;
+            color: white;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: #4c1d95; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Floating Cart Button -->
+    <button onclick="toggleCart()" class="fixed bottom-8 right-8 z-[100] w-16 h-16 purple-gradient rounded-full shadow-2xl flex items-center justify-center text-white pulse hover:scale-110 transition-transform">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-[#0a0a0c]">0</span>
+    </button>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full md:w-96 glass border-l border-purple-500/30 z-[110] cart-sidebar translate-x-full flex flex-col">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center">
+            <h3 class="text-xl font-bold flex items-center gap-3">
+                <i class="fas fa-shopping-basket text-purple-500"></i> My Cart
+            </h3>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <div class="text-center py-10 text-gray-500 italic">No packages selected yet.</div>
+        </div>
+
+        <div class="p-6 bg-white/5 border-t border-white/10">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-400 font-bold uppercase text-xs">Total Monthly</span>
+                <span id="cart-total" class="text-2xl font-black text-purple-400">RM 0.00</span>
+            </div>
+            <button onclick="switchTab('enroll'); scrollToInquiry();" class="w-full purple-gradient py-4 rounded-xl font-black uppercase text-sm">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 h-full w-20 md:w-64 glass border-r border-purple-900/30 z-50 flex flex-col p-4 transition-all duration-300">
+        <div class="flex items-center gap-3 mb-12 px-2">
+            <div class="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20 shrink-0">
+                <i class="fas fa-graduation-cap text-white text-xl"></i>
+            </div>
+            <span class="text-xl font-black tracking-tighter hidden md:block uppercase">Beyond<span class="text-purple-500">Limit</span></span>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full">
+            <a href="#home" class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
+                <i class="fas fa-home w-6"></i>
+                <span class="hidden md:block font-medium">Home</span>
+            </a>
+            <a href="#packages" class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
+                <i class="fas fa-cart-plus w-6"></i>
+                <span class="hidden md:block font-medium">Packages</span>
+            </a>
+            <a href="#inquiry" onclick="switchTab('enroll')" class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
+                <i class="fas fa-file-signature w-6"></i>
+                <span class="hidden md:block font-medium">Enroll Now</span>
+            </a>
+            <a href="#inquiry" onclick="switchTab('ask')" class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
+                <i class="fas fa-comment-dots w-6"></i>
+                <span class="hidden md:block font-medium">Academic Inquiry</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-20 md:ml-64 p-6 md:p-12">
+        
+        <header id="home" class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-6xl font-black text-white uppercase">Academy <span class="text-purple-500">2026</span></h1>
+                <p class="text-gray-400 mt-4 italic">"Define your limits by going beyond them."</p>
+            </div>
+        </header>
+
+        <!-- Packages -->
+        <section id="packages" class="mb-24">
+            <h2 class="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
+                <span class="w-12 h-1 bg-purple-500 rounded-full"></span>
+                Select Packages
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <script>
+                    const packages = [
+                        { id: 1, name: "Preschool", price: 59, color: "red", subjects: "BM, English, Maths, Science" },
+                        { id: 2, name: "SK 1 / 2 / 3", price: 99, color: "blue", subjects: "BM, English, Maths, Science" },
+                        { id: 3, name: "SJKT 1 / 2 / 3", price: 99, color: "purple", subjects: "BM, English, Maths, Science, Tamil" },
+                        { id: 4, name: "SK 4 / 5 / 6", price: 109, color: "orange", subjects: "BM, BI, Maths, Science, Sejarah" },
+                        { id: 5, name: "Form 1 / 2 / 3", price: 109, color: "pink", subjects: "BM, BI, Maths, Science, Sejarah" },
+                        { id: 6, name: "Form 4 & 5 (Arts)", price: 129, color: "gray", subjects: "BM, BI, Maths, Science, Sejarah" },
+                        { id: 7, name: "Form 4 & 5 (Science)", price: 199, color: "green", subjects: "BM, BI, Fizik, Kimia, Bio, Add Maths" }
+                    ];
+                    document.write(packages.map(pkg => `
+                        <div class="glass price-card rounded-2xl overflow-hidden flex flex-col border border-white/5">
+                            <div class="p-5 bg-${pkg.color}-600/20 border-b border-${pkg.color}-500/20">
+                                <h4 class="font-bold text-${pkg.color}-400 text-sm uppercase">${pkg.name}</h4>
+                                <div class="text-2xl font-black text-white mt-1">RM ${pkg.price}.00</div>
+                            </div>
+                            <div class="p-5 flex-grow">
+                                <p class="text-[11px] text-gray-400 mb-6">${pkg.subjects}</p>
+                                <button onclick="addToCart(${pkg.id})" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-xs">
+                                    <i class="fas fa-plus-circle text-purple-500"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </section>
+
+        <!-- Inquiry & Enrollment Section -->
+        <section id="inquiry" class="mb-20 scroll-mt-24">
+            <div class="flex gap-8 mb-8 border-b border-white/10">
+                <button id="tab-enroll" onclick="switchTab('enroll')" class="pb-4 text-sm font-black uppercase tracking-widest tab-active transition-all">
+                    1. Enrollment (Checkout)
+                </button>
+                <button id="tab-ask" onclick="switchTab('ask')" class="pb-4 text-sm font-black uppercase tracking-widest text-gray-500 hover:text-white transition-all">
+                    2. Academic Inquiry (Advice)
+                </button>
+            </div>
+
+            <div class="glass p-8 md:p-12 rounded-[2rem] border border-white/5">
+                
+                <!-- VIEW 1: ENROLLMENT / CHECKOUT -->
+                <div id="view-enroll" class="space-y-8">
+                    <h3 class="text-2xl font-black text-white uppercase">Finalize Registration</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parent Name</label>
+                            <input type="text" id="pNameEnroll" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="Full Name">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Phone Number</label>
+                            <input type="tel" id="pPhoneEnroll" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="01X-XXXXXXX">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student Name</label>
+                            <input type="text" id="sNameEnroll" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="Student Name">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Target Level</label>
+                            <select id="sLevelEnroll" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500">
+                                <option>Preschool</option>
+                                <option>Standard 1-3</option>
+                                <option>Standard 4-6</option>
+                                <option>Form 1-3</option>
+                                <option>Form 4-5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-purple-600/10 rounded-2xl border border-purple-500/20">
+                        <h5 class="text-purple-400 font-black text-[10px] uppercase mb-4 tracking-widest">Cart Summary</h5>
+                        <div id="cart-summary-items" class="space-y-2 text-xs">
+                            <span class="text-gray-500 italic">No packages selected in cart.</span>
+                        </div>
+                    </div>
+
+                    <button onclick="checkout()" class="w-full purple-gradient text-white font-black py-6 rounded-2xl shadow-xl flex items-center justify-center gap-4 text-lg">
+                        <i class="fab fa-whatsapp text-2xl"></i> CONFIRM & ENROLL
+                    </button>
+                </div>
+
+                <!-- VIEW 2: ACADEMIC INQUIRY -->
+                <div id="view-ask" class="hidden space-y-8">
+                    <h3 class="text-2xl font-black text-white uppercase">Academic Consultation</h3>
+                    <p class="text-gray-400 text-sm">Not sure which package is best? Send us your student's details for a free assessment.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parent Name</label>
+                            <input type="text" id="pNameAsk" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="Full Name">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student Level</label>
+                            <input type="text" id="sLevelAsk" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="e.g. Form 4">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Academic Weaknesses / Concerns</label>
+                        <textarea id="weaknessAsk" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="Tell us what subjects the student struggles with..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Latest Results (Optional)</label>
+                        <textarea id="resultsAsk" rows="2" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500" placeholder="e.g. BM: B, English: C, Maths: G..."></textarea>
+                    </div>
+
+                    <button onclick="submitInquiry()" class="w-full bg-white/10 hover:bg-white/20 text-white font-black py-6 rounded-2xl border border-white/10 flex items-center justify-center gap-4 text-lg transition-all">
+                        <i class="fas fa-paper-plane"></i> SUBMIT INQUIRY
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let cart = [];
+
+        function switchTab(type) {
+            const enrollTab = document.getElementById('tab-enroll');
+            const askTab = document.getElementById('tab-ask');
+            const enrollView = document.getElementById('view-enroll');
+            const askView = document.getElementById('view-ask');
+
+            if (type === 'enroll') {
+                enrollTab.classList.add('tab-active');
+                askTab.classList.remove('tab-active');
+                enrollView.classList.remove('hidden');
+                askView.classList.add('hidden');
+            } else {
+                askTab.classList.add('tab-active');
+                enrollTab.classList.remove('tab-active');
+                askView.classList.remove('hidden');
+                enrollView.classList.add('hidden');
+            }
+        }
+
+        function addToCart(id) {
+            const pkg = packages.find(p => p.id === id);
+            if (!cart.some(item => item.id === id)) {
+                cart.push(pkg);
+                updateCartUI();
+                const btn = event.currentTarget;
+                btn.innerHTML = '<i class="fas fa-check"></i> Added';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-plus-circle"></i> Add to Cart', 1000);
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const summary = document.getElementById('cart-summary-items');
+            const badge = document.getElementById('cart-count-badge');
+            const totalEl = document.getElementById('cart-total');
+
+            badge.textContent = cart.length;
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-10 text-gray-500 italic">No packages selected.</div>`;
+                summary.innerHTML = `<span class="text-gray-500 italic">No packages selected.</span>`;
+                totalEl.textContent = "RM 0.00";
+                return;
+            }
+
+            let total = 0;
+            let html = "";
+            let sumHtml = "";
+            cart.forEach(item => {
+                total += item.price;
+                html += `<div class="flex justify-between p-3 glass rounded-lg"><div><p class="text-sm font-bold">${item.name}</p></div><button onclick="removeFromCart(${item.id})" class="text-red-500"><i class="fas fa-trash"></i></button></div>`;
+                sumHtml += `<div class="flex justify-between"><span>${item.name}</span><span>RM ${item.price}</span></div>`;
+            });
+
+            container.innerHTML = html;
+            summary.innerHTML = sumHtml + `<div class="border-t border-white/10 mt-2 pt-2 flex justify-between font-black text-purple-400"><span>Total</span><span>RM ${total}.00</span></div>`;
+            totalEl.textContent = `RM ${total}.00`;
+        }
+
+        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('translate-x-full'); }
+        function scrollToInquiry() { document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' }); }
+
+        function checkout() {
+            const name = document.getElementById('pNameEnroll').value;
+            const phone = document.getElementById('pPhoneEnroll').value;
+            const student = document.getElementById('sNameEnroll').value;
+            if (!name || !phone || cart.length === 0) return alert("Fill details and add to cart first!");
+            
+            const list = cart.map(i => `- ${i.name}`).join('%0A');
+            const msg = `*NEW ENROLLMENT*%0A%0A*Parent:* ${name}%0A*Phone:* ${phone}%0A*Student:* ${student}%0A%0A*Packages:*%0A${list}%0A%0ATotal: RM ${cart.reduce((a,b)=>a+b.price,0)}`;
+            window.open(`https://wa.me/60142318840?text=${msg}`);
+        }
+
+        function submitInquiry() {
+            const name = document.getElementById('pNameAsk').value;
+            const level = document.getElementById('sLevelAsk').value;
+            const weak = document.getElementById('weaknessAsk').value;
+            const results = document.getElementById('resultsAsk').value;
+            if (!name) return alert("Enter your name!");
+
+            const msg = `*ACADEMIC INQUIRY*%0A%0A*Parent:* ${name}%0A*Level:* ${level}%0A*Concerns:* ${weak}%0A*Results:* ${results}`;
+            window.open(`https://wa.me/60142318840?text=${msg}`);
+        }
+    </script>
+</body>
+</html>
