@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Faculty | Beyond Limit Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0c;
+            color: #e2e8f0;
+        }
+
+        .glass {
+            background: rgba(30, 30, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .purple-gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        }
+
+        .teacher-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(124, 58, 237, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen pb-20">
+
+    <!-- Navbar -->
+    <nav class="p-6 flex justify-between items-center sticky top-0 z-50 glass border-b border-white/5">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center shadow-lg">
+                <i class="fas fa-graduation-cap text-white text-xl"></i>
+            </div>
+            <span class="text-xl font-black tracking-tighter uppercase">Beyond<span
+                    class="text-purple-500">Limit</span></span>
+        </div>
+        <a href="index.html"
+            class="glass px-6 py-2 rounded-xl text-xs font-bold uppercase hover:bg-white/10 transition-all">
+            <i class="fas fa-home mr-2"></i> Back to Home
+        </a>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 mt-16">
+        <!-- Header -->
+        <header class="mb-16">
+            <h1 class="text-4xl md:text-7xl font-black uppercase mb-4 leading-none">The <span
+                    class="text-purple-500">Faculty</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl italic">"Our 32+ educators are more than just teachers; they are
+                mentors dedicated to pushing students beyond their perceived limits."</p>
+        </header>
+
+        <!-- Dynamic Filter Bar -->
+        <div class="flex flex-wrap gap-3 mb-12" id="filter-bar">
+            <button onclick="filterBy('all')"
+                class="filter-btn active px-6 py-2 rounded-full glass border border-white/10 text-xs font-black uppercase transition-all">All
+                Faculty</button>
+            <button onclick="filterBy('Science')"
+                class="filter-btn px-6 py-2 rounded-full glass border border-white/10 text-xs font-black uppercase transition-all">Science
+                & Math</button>
+            <button onclick="filterBy('Languages')"
+                class="filter-btn px-6 py-2 rounded-full glass border border-white/10 text-xs font-black uppercase transition-all">Languages</button>
+            <button onclick="filterBy('Primary')"
+                class="filter-btn px-6 py-2 rounded-full glass border border-white/10 text-xs font-black uppercase transition-all">Primary
+                (SK/SJKT)</button>
+            <button onclick="filterBy('Secondary')"
+                class="filter-btn px-6 py-2 rounded-full glass border border-white/10 text-xs font-black uppercase transition-all">Secondary
+                (SPM)</button>
+        </div>
+
+        <!-- Teachers Grid -->
+        <div id="teachers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- JavaScript will inject 32 cards here -->
+        </div>
+    </main>
+
+    <script>
+        // Array to store 32 teacher profiles
+        const faculty = [
+            { name: "Teacher Amutha", subject: "Science", cat: "Science", img: "Teachers/Amutha.jpeg", desc: "Expert in Scientific Methods and Experiments" },
+            { name: "Teacher Anisah", subject: "Science and Physics", cat: "Science", img: "Teachers/Anisah.jpeg", desc: "Expert Educator" },
+            { name: "Cikgu Azizi", subject: "Bahasa Melayu", cat: "Languages", img: "Teachers/Azizi.jpeg", desc: "Karangan Specialist" },
+            { name: "Teacher Dania", subject: "Mathematics", cat: "Primary", img: "Teachers/Dania.jpeg", desc: "Expert Educator" },
+            { name: "Cikgu Faizal", subject: "Science", cat: "Primary", img: "Teachers/Faizal.jpeg", desc: "Creative Learning" },
+            { name: "Sir Farhan", subject: "Biology", cat: "Science", img: "Teachers/Farhan.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Hanis", subject: "Science", cat: "Secondary", img: "Teachers/Hanis.jpeg", desc: "Expert Educator" },
+            { name: "Sir Hartono", subject: "Sejarah", cat: "Secondary", img: "Teachers/Hartono.jpeg", desc: "Exam Technique Expert" },
+            { name: "Teacher Hasmiera", subject: "English", cat: "Languages", img: "Teachers/Hasmiera.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Hema", subject: "Mathematics", cat: "Primary", img: "Teachers/Hema.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Irsyada", subject: "Science", cat: "Primary", img: "Teachers/Irsyada.jpeg", desc: "Expert Educator" },
+            { name: "Sir Jaya", subject: "Geography", cat: "Secondary", img: "Teachers/Jaya.jpeg", desc: "Expert Educator" },
+            { name: "Sir Kalis", subject: "Physics", cat: "Science", img: "Teachers/Kalis.jpeg", desc: "Expert Educator" },
+            { name: "Sir Kang", subject: "Add Maths", cat: "Science", img: "Teachers/Kang.jpeg", desc: "Master of Calculus" },
+            { name: "Teacher Khushalyaa", subject: "English", cat: "Languages", img: "Teachers/Khushalyaa.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Komala", subject: "Tamil", cat: "Languages", img: "Teachers/Komala.jpeg", desc: "Expert Educator" },
+            { name: "Sir Nandy", subject: "Account", cat: "Secondary", img: "Teachers/Nandy.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Nina", subject: "Primary Education", cat: "Primary", img: "Teachers/Nina.jpeg", desc: "Expert Educator" },
+            { name: "Sir Ratnavell", subject: "Mathematics", cat: "Secondary", img: "Teachers/Ratnavell.jpeg", desc: "Expert Educator" },
+            { name: "Sir Safwan", subject: "Science", cat: "Secondary", img: "Teachers/Safwan.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Saidah", subject: "English", cat: "Languages", img: "Teachers/Saidah.jpeg", desc: "TESL Certified" },
+            { name: "Madam Sarina", subject: "Physics", cat: "Science", img: "Teachers/Sarina.jpeg", desc: "KBAT Focus" },
+            { name: "Teacher Shalini", subject: "Basic Tamil", cat: "Languages", img: "Teachers/Shalini.jpeg", desc: "Experienced in teaching Tamil for beginners" },
+            { name: "Sir Shathia", subject: "Mathematics", cat: "Secondary", img: "Teachers/Shathia.jpeg", desc: "Expert Educator" },
+            { name: "Sir Shivabalan", subject: "Bahasa Tamil", cat: "Primary", img: "Teachers/Shiva.jpeg", desc: "Skilled in teaching effective Tamil Writing" },
+            { name: "Teacher Tan", subject: "Science", cat: "Primary", img: "Teachers/Tan.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Thava", subject: "Mathematics", cat: "Primary", img: "Teachers/Thava.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Thenisha", subject: "Mathematics", cat: "Primary", img: "Teachers/Thenisha.jpeg", desc: "Interactive Math Learning" },
+            { name: "Teacher Ting", subject: "Chemistry", cat: "Science", img: "Teachers/Ting.jpeg", desc: "Simplifying Complex Formulas" },
+            { name: "Sir Vijay", subject: "History", cat: "Secondary", img: "Teachers/Vijay.jpeg", desc: "Expert Educator" },
+            { name: "Sir Vuzt", subject: "ICT", cat: "Secondary", img: "Teachers/Vuzt.jpeg", desc: "Expert Educator" },
+            { name: "Sir Yuga", subject: "Physical Education", cat: "Primary", img: "Teachers/Yuga.jpeg", desc: "Expert Educator" }
+        ];
+
+        function renderFaculty(filter = 'all') {
+            const grid = document.getElementById('teachers-grid');
+            const data = filter === 'all' ? faculty : faculty.filter(t => t.cat === filter);
+
+            grid.innerHTML = data.map(t => `
+                <div class="teacher-card glass rounded-[2.5rem] overflow-hidden flex flex-col group">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="${t.img}" class="w-full h-full object-contain bg-black/40 transition-transform duration-700 group-hover:scale-110" alt="${t.name}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <span class="bg-purple-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">${t.cat}</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-purple-400 font-bold text-xs uppercase tracking-tighter mb-1">${t.subject}</p>
+                        <h3 class="text-xl font-black text-white uppercase">${t.name}</h3>
+                        <p class="text-gray-500 text-xs mt-3 italic">${t.desc}</p>
+                        <div class="flex gap-3 mt-6">
+                            <a href="#" class="text-gray-600 hover:text-purple-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-600 hover:text-purple-500 transition-colors"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterBy(cat) {
+            // Update buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(cat) || (cat === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+            renderFaculty(cat);
+        }
+
+        // Init
+        renderFaculty();
+    </script>
+</body>
+
+</html>
