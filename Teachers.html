@@ -108,45 +108,46 @@
     </main>
 
     <script>
-        // Array to store 32 teacher profiles
         const faculty = [
             { name: "Teacher Amutha", subject: "Science", cat: "Science", img: "Teachers/Amutha.jpeg", desc: "Expert in Scientific Methods and Experiments" },
-            { name: "Teacher Anisah", subject: "Science and Physics", cat: "Science", img: "Teachers/Anisah.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Anisah", subject: "Science and Physics", cat: "Science", img: "Teachers/Anisah.jpeg", desc: "Expert in Basic Science Concept" },
             { name: "Cikgu Azizi", subject: "Bahasa Melayu", cat: "Languages", img: "Teachers/Azizi.jpeg", desc: "Karangan Specialist" },
-            { name: "Teacher Dania", subject: "Mathematics", cat: "Primary", img: "Teachers/Dania.jpeg", desc: "Expert Educator" },
-            { name: "Cikgu Faizal", subject: "Science", cat: "Primary", img: "Teachers/Faizal.jpeg", desc: "Creative Learning" },
-            { name: "Sir Farhan", subject: "Biology", cat: "Science", img: "Teachers/Farhan.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Hanis", subject: "Science", cat: "Secondary", img: "Teachers/Hanis.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Dania", subject: "Science", cat: "Secondary", img: "Teachers/Dania.jpeg", desc: "Expert Educator" },
+            { name: "Cikgu Faizal", subject: "Bahasa Melayu", cat: ["Languages", "Secondary"], img: "Teachers/Faizal.jpeg", desc: "Creative Learning" },
+            { name: "Sir Farhan", subject: "English", cat: ["Languages", "Primary"], img: "Teachers/Farhan.jpeg", desc: "Creative and Inreactive Teaching" },
+            { name: "Teacher Hanis", subject: "Science", cat: ["Primary", "Science"], img: "Teachers/Hanis.jpeg", desc: "Expert in Science Concepts" },
             { name: "Sir Hartono", subject: "Sejarah", cat: "Secondary", img: "Teachers/Hartono.jpeg", desc: "Exam Technique Expert" },
-            { name: "Teacher Hasmiera", subject: "English", cat: "Languages", img: "Teachers/Hasmiera.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Hema", subject: "Mathematics", cat: "Primary", img: "Teachers/Hema.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Irsyada", subject: "Science", cat: "Primary", img: "Teachers/Irsyada.jpeg", desc: "Expert Educator" },
-            { name: "Sir Jaya", subject: "Geography", cat: "Secondary", img: "Teachers/Jaya.jpeg", desc: "Expert Educator" },
-            { name: "Sir Kalis", subject: "Physics", cat: "Science", img: "Teachers/Kalis.jpeg", desc: "Expert Educator" },
-            { name: "Sir Kang", subject: "Add Maths", cat: "Science", img: "Teachers/Kang.jpeg", desc: "Master of Calculus" },
-            { name: "Teacher Khushalyaa", subject: "English", cat: "Languages", img: "Teachers/Khushalyaa.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Komala", subject: "Tamil", cat: "Languages", img: "Teachers/Komala.jpeg", desc: "Expert Educator" },
-            { name: "Sir Nandy", subject: "Account", cat: "Secondary", img: "Teachers/Nandy.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Nina", subject: "Primary Education", cat: "Primary", img: "Teachers/Nina.jpeg", desc: "Expert Educator" },
-            { name: "Sir Ratnavell", subject: "Mathematics", cat: "Secondary", img: "Teachers/Ratnavell.jpeg", desc: "Expert Educator" },
-            { name: "Sir Safwan", subject: "Science", cat: "Secondary", img: "Teachers/Safwan.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Saidah", subject: "English", cat: "Languages", img: "Teachers/Saidah.jpeg", desc: "TESL Certified" },
-            { name: "Madam Sarina", subject: "Physics", cat: "Science", img: "Teachers/Sarina.jpeg", desc: "KBAT Focus" },
+            { name: "Teacher Hasmiera", subject: "Chemistry", cat: ["Science", "Secondary"], img: "Teachers/Hasmiera.jpeg", desc: "Expert in Chemistry Concepts" },
+            { name: "Teacher Hema", subject: "Mathematics", cat: ["Primary", "Science"], img: "Teachers/Hema.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Irsyada", subject: "Chemistry and Biology", cat: ["Science", "Secondary"], img: "Teachers/Irsyada.jpeg", desc: "Expert in Chemistry Experiment and Practical" },
+            { name: "Teacher Jaya", subject: "Bahasa Melayu", cat: ["Primary", "Languages"], img: "Teachers/Jaya.jpeg", desc: "Interactive Learning" },
+            { name: "Teacher Kalis", subject: "Mathematics", cat: ["Primary"], img: "Teachers/Kalis.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Kang", subject: "Sejarah", cat: "Primary", img: "Teachers/Kang.jpeg", desc: "Engaging and Story-Based Learning Approach" },
+            { name: "Teacher Khushalyaa", subject: "Science", cat: ["Primary", "Science"], img: "Teachers/Khushalyaa.jpeg", desc: "Expert in Hands-On Learning" },
+            { name: "Teacher Komala", subject: "Science and Sejarah", cat: "Primary", img: "Teachers/Komala.jpeg", desc: "Expert Educator" },
+            { name: "Teacher Nandy", subject: "English", cat: "Primary", img: "Teachers/Nandy.jpeg", desc: "Clear Pronounciation and Grammar" },
+            { name: "Teacher Nina", subject: "Physics", cat: "Secondary", img: "Teachers/Nina.jpeg", desc: "Practical and Experimental Physics" },
+            { name: "Sir Ratnavell", subject: "Science", cat: ["Primary", "Science"], img: "Teachers/Ratnavell.jpeg", desc: "Expert Educator" },
+            { name: "Sir Safwan", subject: "Mathematics and Add Maths", cat: "Secondary", img: "Teachers/Safwan.jpeg", desc: "Expert in Problem Solving" },
+            { name: "Teacher Saidah", subject: "Bahasa Melayu and Pendidikan Islam", cat: "Languages", img: "Teachers/Saidah.jpeg", desc: "Expert in Islamic Studies" },
+            { name: "Madam Sarina", subject: "Sejarah", cat: "Secondary", img: "Teachers/Sarina.jpeg", desc: "KBAT Focus" },
             { name: "Teacher Shalini", subject: "Basic Tamil", cat: "Languages", img: "Teachers/Shalini.jpeg", desc: "Experienced in teaching Tamil for beginners" },
-            { name: "Sir Shathia", subject: "Mathematics", cat: "Secondary", img: "Teachers/Shathia.jpeg", desc: "Expert Educator" },
-            { name: "Sir Shivabalan", subject: "Bahasa Tamil", cat: "Primary", img: "Teachers/Shiva.jpeg", desc: "Skilled in teaching effective Tamil Writing" },
-            { name: "Teacher Tan", subject: "Science", cat: "Primary", img: "Teachers/Tan.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Thava", subject: "Mathematics", cat: "Primary", img: "Teachers/Thava.jpeg", desc: "Expert Educator" },
-            { name: "Teacher Thenisha", subject: "Mathematics", cat: "Primary", img: "Teachers/Thenisha.jpeg", desc: "Interactive Math Learning" },
-            { name: "Teacher Ting", subject: "Chemistry", cat: "Science", img: "Teachers/Ting.jpeg", desc: "Simplifying Complex Formulas" },
-            { name: "Sir Vijay", subject: "History", cat: "Secondary", img: "Teachers/Vijay.jpeg", desc: "Expert Educator" },
-            { name: "Sir Vuzt", subject: "ICT", cat: "Secondary", img: "Teachers/Vuzt.jpeg", desc: "Expert Educator" },
-            { name: "Sir Yuga", subject: "Physical Education", cat: "Primary", img: "Teachers/Yuga.jpeg", desc: "Expert Educator" }
+            { name: "Sir Shathia", subject: "Mathematics", cat: ["Science", "Primary"], img: "Teachers/Shathia.jpeg", desc: "Expert in Question Analysis Skills" },
+            { name: "Sir Shivabalan", subject: "Bahasa Tamil", cat: ["Primary", "Languages"], img: "Teachers/Shiva.jpeg", desc: "Skilled in teaching effective Tamil Writing" },
+            { name: "Sir Tan", subject: "Science", cat: ["Primary", "Science"], img: "Teachers/Tan.jpeg", desc: "Expert in Science Concepts" },
+            { name: "Sir Thava", subject: "Mathematics and Add Maths", cat: ["Primary", "Science"], img: "Teachers/Thava.jpeg", desc: "Expert in Accuracy and Calculation Skills" },
+            { name: "Teacher Thenisha", subject: "Sejarah", cat: "Primary", img: "Teachers/Thenisha.jpeg", desc: "Expert in Answering Exam Questions Techniques" },
+            { name: "Sir Ting", subject: "Mandarin", cat: ["Languages", "Primary"], img: "Teachers/Ting.jpeg", desc: "Expert in Teaching Mandarin Vocabulary" },
+            { name: "Sir Vijay", subject: "Science and Biology", cat: ["Science", "Secondary"], img: "Teachers/Vijay.jpeg", desc: "Specialist in Experimental Skills" },
+            { name: "Sir Vuzt", subject: "Maths", cat: "Primary", img: "Teachers/Vuzt.jpeg", desc: "Problem-Solving and Reasoning Skills" },
+            { name: "Teacher Yoga", subject: "English", cat: "Secondary", img: "Teachers/Yuga.jpeg", desc: "Literature Expertise" }
         ];
 
         function renderFaculty(filter = 'all') {
             const grid = document.getElementById('teachers-grid');
-            const data = filter === 'all' ? faculty : faculty.filter(t => t.cat === filter);
+            const data = filter === 'all' ? faculty : faculty.filter(t =>
+                Array.isArray(t.cat) ? t.cat.includes(filter) : t.cat === filter
+            );
 
             grid.innerHTML = data.map(t => `
                 <div class="teacher-card glass rounded-[2.5rem] overflow-hidden flex flex-col group">
@@ -154,7 +155,7 @@
                         <img src="${t.img}" class="w-full h-full object-contain bg-black/40 transition-transform duration-700 group-hover:scale-110" alt="${t.name}">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-transparent opacity-80"></div>
                         <div class="absolute bottom-6 left-6">
-                            <span class="bg-purple-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">${t.cat}</span>
+                            <span class="bg-purple-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">${Array.isArray(t.cat) ? t.cat.join(' / ') : t.cat}</span>
                         </div>
                     </div>
                     <div class="p-8">
@@ -162,8 +163,6 @@
                         <h3 class="text-xl font-black text-white uppercase">${t.name}</h3>
                         <p class="text-gray-500 text-xs mt-3 italic">${t.desc}</p>
                         <div class="flex gap-3 mt-6">
-                            <a href="#" class="text-gray-600 hover:text-purple-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="text-gray-600 hover:text-purple-500 transition-colors"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
