@@ -10,16 +10,67 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
+        :root {
+            --bg-body: #0a0a0c;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(30, 30, 45, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --nav-text: #94a3b8;
+        }
+
+        .light-mode {
+            --bg-body: #f1f1ee;
+            --text-main: #1c1c1c;
+            --text-dim: #555555;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.15);
+            --nav-text: #4a4a4a;
+        }
+
+        /* Light Mode Specific Resets */
+        .light-mode .text-white,
+        .light-mode .text-gray-400,
+        .light-mode h1,
+        .light-mode h2,
+        .light-mode h3,
+        .light-mode h4,
+        .light-mode p {
+            color: var(--text-main) !important;
+        }
+
+        .light-mode .text-purple-500,
+        .light-mode .text-purple-400 {
+            color: #7c3aed !important;
+        }
+
+        nav a,
+        nav button,
+        span {
+            transition: color 0.4s ease;
+        }
+
+        .light-mode nav a,
+        .light-mode nav button {
+            color: var(--nav-text);
+        }
+
+        .light-mode nav span {
+            color: var(--text-main);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0c;
-            color: #e2e8f0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .glass {
-            background: rgba(30, 30, 45, 0.7);
+            background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
         }
 
         .purple-gradient {
@@ -47,7 +98,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #0a0a0c;
+            background: var(--bg-body);
         }
 
         ::-webkit-scrollbar-thumb {
@@ -68,10 +119,16 @@
             <span class="text-xl font-black tracking-tighter uppercase">Beyond<span
                     class="text-purple-500">Limit</span></span>
         </div>
-        <a href="index.html"
-            class="glass px-6 py-2 rounded-xl text-xs font-bold uppercase hover:bg-white/10 transition-all">
-            <i class="fas fa-home mr-2"></i> Back to Home
-        </a>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleTheme()"
+                class="glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all">
+                <i class="fas fa-moon text-sm" id="theme-icon"></i>
+            </button>
+            <a href="index.html"
+                class="glass px-6 py-2 rounded-xl text-xs font-bold uppercase hover:bg-white/10 transition-all">
+                <i class="fas fa-home mr-2"></i> Back to Home
+            </a>
+        </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-6 mt-16">
@@ -180,7 +237,32 @@
             renderFaculty(cat);
         }
 
-        // Init
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        }
+
+        function updateThemeUI(isLight) {
+            const icon = document.getElementById('theme-icon');
+            if (isLight) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        // Init Theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            updateThemeUI(true);
+        }
+
+        // Init Faculty
         renderFaculty();
     </script>
 </body>

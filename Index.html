@@ -10,17 +10,73 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
+        :root {
+            --bg-body: #0a0a0c;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(30, 30, 45, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(30, 30, 45, 0.7);
+            --card-hover: rgba(124, 58, 237, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --nav-text: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .light-mode {
+            --bg-body: #f1f1ee;
+            --text-main: #1c1c1c;
+            --text-dim: #555555;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-hover: rgba(124, 58, 237, 0.05);
+            --input-bg: #fcfcfc;
+            --input-border: #d2d2d2;
+            --nav-text: #4a4a4a;
+        }
+
+        /* Light Mode Specific Resets for Tailwind hardcoded white text */
+        .light-mode .text-white,
+        .light-mode .text-gray-400,
+        .light-mode h1,
+        .light-mode h2,
+        .light-mode h3,
+        .light-mode h4,
+        .light-mode p {
+            color: var(--text-main) !important;
+        }
+
+        /* Keep purple labels purple */
+        .light-mode .text-purple-500,
+        .light-mode .text-purple-400 {
+            color: #7c3aed !important;
+        }
+
+        /* Slider overrides to keep icons visible */
+        .light-mode .slider-item video,
+        .light-mode .slider-item img {
+            background: #e5e7eb;
+        }
+
+        .light-mode .slider-dot {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0c;
-            color: #e2e8f0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .glass {
-            background: rgba(30, 30, 45, 0.7);
+            background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
         }
 
         .purple-gradient {
@@ -28,12 +84,13 @@
         }
 
         .price-card {
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .price-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.3);
+            background: var(--card-hover);
         }
 
         .cart-sidebar {
@@ -101,6 +158,24 @@
             background: #7c3aed;
             width: 32px;
             box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+        }
+
+        input,
+        select,
+        textarea {
+            background-color: var(--input-bg) !important;
+            border: 1px solid var(--input-border) !important;
+            color: var(--text-main) !important;
+        }
+
+        nav a,
+        nav button {
+            color: var(--nav-text) !important;
+        }
+
+        nav a:hover,
+        nav button:hover {
+            color: var(--text-main) !important;
         }
     </style>
 </head>
@@ -181,6 +256,15 @@
                 <span class="hidden md:block font-medium">Academic Inquiry</span>
             </a>
         </div>
+
+        <!-- Theme Toggle -->
+        <div class="mt-auto px-2">
+            <button onclick="toggleTheme()" id="theme-toggle"
+                class="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
+                <i class="fas fa-moon w-6" id="theme-icon"></i>
+                <span class="hidden md:block font-medium" id="theme-text">Dark Mode</span>
+            </button>
+        </div>
     </nav>
 
     <!-- Main Content -->
@@ -190,7 +274,7 @@
             <div class="max-w-2xl">
                 <h1 class="text-4xl md:text-6xl font-black text-white uppercase">Academy <span
                         class="text-purple-500">2026</span></h1>
-                <p class="text-gray-400 mt-4 italic">"Define your limits by going beyond them."</p>
+                <p class="text-gray-400 mt-4 italic">"The only way to define your limits is by going beyond them."</p>
             </div>
         </header>
 
@@ -307,10 +391,37 @@
                                 placeholder="01X-XXXXXXX">
                         </div>
                         <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student
+                                Email</label>
+                            <input type="email" id="sEmailEnroll"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                                placeholder="example@gmail.com">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parents
+                                Email</label>
+                            <input type="email" id="pEmailEnroll"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                                placeholder="example@gmail.com">
+                        </div>
+                        <div>
                             <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student Name</label>
                             <input type="text" id="sNameEnroll"
                                 class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
                                 placeholder="Student Name">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">School Name</label>
+                            <input type="text" id="sSchoolEnroll"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                                placeholder="School Name">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Date of
+                                Birth</label>
+                            <input type="date" id="sDobEnroll"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                                placeholder="Date of Birth">
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Target Level</label>
@@ -586,7 +697,40 @@
             startAutoPlay();
         }
 
-        // Initialize
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        }
+
+        function updateThemeUI(isLight) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+
+            if (isLight) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                text.textContent = 'Light Mode';
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // Init
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            updateThemeUI(true);
+        }
+
+        // Initialize Slider
         initSlider();
     </script>
 </body>
