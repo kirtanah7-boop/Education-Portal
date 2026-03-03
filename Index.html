@@ -11,57 +11,23 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
         :root {
-            --bg-body: #0a0a0c;
-            --text-main: #e2e8f0;
-            --text-dim: #94a3b8;
-            --glass-bg: rgba(30, 30, 45, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --nav-bg: rgba(30, 30, 45, 0.7);
-            --card-hover: rgba(124, 58, 237, 0.1);
-            --input-bg: rgba(255, 255, 255, 0.05);
-            --input-border: rgba(255, 255, 255, 0.1);
-            --nav-text: #94a3b8;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .light-mode {
-            --bg-body: #f1f1ee;
-            --text-main: #1c1c1c;
-            --text-dim: #555555;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(0, 0, 0, 0.15);
-            --nav-bg: rgba(255, 255, 255, 0.95);
-            --card-hover: rgba(124, 58, 237, 0.05);
-            --input-bg: #fcfcfc;
-            --input-border: #d2d2d2;
-            --nav-text: #4a4a4a;
-        }
-
-        /* Light Mode Specific Resets for Tailwind hardcoded white text */
-        .light-mode .text-white,
-        .light-mode .text-gray-400,
-        .light-mode h1,
-        .light-mode h2,
-        .light-mode h3,
-        .light-mode h4,
-        .light-mode p {
-            color: var(--text-main) !important;
-        }
-
-        /* Keep purple labels purple */
-        .light-mode .text-purple-500,
-        .light-mode .text-purple-400 {
-            color: #7c3aed !important;
-        }
-
-        /* Slider overrides to keep icons visible */
-        .light-mode .slider-item video,
-        .light-mode .slider-item img {
-            background: #e5e7eb;
-        }
-
-        .light-mode .slider-dot {
-            background: rgba(0, 0, 0, 0.2);
+            /* Refined Light Purple Theme - More Contrast */
+            --bg-body: #f5f0ff;
+            --text-main: #1e1140;
+            --text-dim: #6d28d9;
+            /* Deep Purple */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(109, 40, 217, 0.3);
+            /* Darker border */
+            --nav-bg: #ffffff;
+            --card-hover: rgba(109, 40, 217, 0.08);
+            --card-border: #c4b5fd;
+            /* Visible violet border */
+            --input-bg: #ffffff;
+            --input-border: #a78bfa;
+            --nav-text: #4c1d95;
+            --accent: #7c3aed;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -74,70 +40,65 @@
 
         .glass {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
-            transition: var(--transition);
         }
 
         .purple-gradient {
             background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
         }
 
+        .text-gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .price-card {
             transition: var(--transition);
+            border: 2px solid var(--card-border);
+            /* Thicker visible border */
+            background: var(--glass-bg);
         }
 
         .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.3);
-            background: var(--card-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(109, 40, 217, 0.3);
+            border-color: var(--accent);
         }
 
         .cart-sidebar {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes pulse-purple {
             0% {
-                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+                box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.6);
             }
 
             70% {
-                box-shadow: 0 0 0 15px rgba(124, 58, 237, 0);
+                box-shadow: 0 0 0 15px rgba(109, 40, 217, 0);
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+                box-shadow: 0 0 0 0 rgba(109, 40, 217, 0);
             }
         }
 
         .pulse {
-            animation: pulse-purple 2s infinite;
+            animation: pulse-purple 2.5s infinite;
         }
 
         .tab-active {
-            border-bottom: 2px solid #7c3aed;
-            color: white;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0a0a0c;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4c1d95;
-            border-radius: 10px;
+            border-bottom: 3px solid #7c3aed;
+            color: var(--accent) !important;
         }
 
         .slider-item {
             position: absolute;
             inset: 0;
             opacity: 0;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.8s ease-in-out;
         }
 
         .slider-item.active {
@@ -145,73 +106,73 @@
             z-index: 10;
         }
 
-        .slider-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
         .slider-dot.active {
             background: #7c3aed;
-            width: 32px;
-            box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+            width: 24px;
         }
 
         input,
         select,
         textarea {
-            background-color: var(--input-bg) !important;
-            border: 1px solid var(--input-border) !important;
-            color: var(--text-main) !important;
+            background-color: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            color: var(--text-main);
+            transition: var(--transition);
         }
 
-        nav a,
-        nav button {
-            color: var(--nav-text) !important;
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
         }
 
-        nav a:hover,
-        nav button:hover {
-            color: var(--text-main) !important;
+        .nav-link {
+            color: var(--nav-text);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--card-hover);
+            color: var(--accent);
         }
     </style>
 </head>
 
-<body class="min-h-screen">
+<body class="min-h-screen overflow-x-hidden">
 
     <!-- Floating Cart Button -->
     <button onclick="toggleCart()"
-        class="fixed bottom-8 right-8 z-[100] w-16 h-16 purple-gradient rounded-full shadow-2xl flex items-center justify-center text-white pulse hover:scale-110 transition-transform">
-        <i class="fas fa-shopping-cart text-xl"></i>
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 md:w-16 md:h-16 purple-gradient rounded-full shadow-2xl flex items-center justify-center text-white pulse hover:scale-110 transition-transform active:scale-95">
+        <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
         <span id="cart-count-badge"
-            class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-[#0a0a0c]">0</span>
+            class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-900">0</span>
     </button>
 
     <!-- Cart Drawer -->
     <div id="cartDrawer"
-        class="fixed top-0 right-0 h-full w-full md:w-96 glass border-l border-purple-500/30 z-[110] cart-sidebar translate-x-full flex flex-col">
-        <div class="p-6 border-b border-white/10 flex justify-between items-center">
+        class="fixed top-0 right-0 h-full w-full md:w-96 glass border-l border-purple-500/20 z-[110] cart-sidebar translate-x-full flex flex-col shadow-2xl">
+        <div class="p-6 border-b border-purple-500/10 flex justify-between items-center">
             <h3 class="text-xl font-bold flex items-center gap-3">
-                <i class="fas fa-shopping-basket text-purple-500"></i> My Cart
+                <i class="fas fa-shopping-basket text-purple-600"></i> My Cart
             </h3>
-            <button onclick="toggleCart()" class="text-gray-400 hover:text-white"><i
-                    class="fas fa-times text-xl"></i></button>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-purple-600 transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
         </div>
 
         <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
-            <div class="text-center py-10 text-gray-500 italic">No packages selected yet.</div>
+            <div class="text-center py-10 text-gray-400 italic">No packages selected yet.</div>
         </div>
 
-        <div class="p-6 bg-white/5 border-t border-white/10">
+        <div class="p-6 bg-purple-500/5 border-t border-purple-500/10">
             <div class="flex justify-between items-center mb-6">
-                <span class="text-gray-400 font-bold uppercase text-xs">Total Monthly</span>
-                <span id="cart-total" class="text-2xl font-black text-purple-400">RM 0.00</span>
+                <span class="text-gray-500 font-bold uppercase text-xs tracking-widest">Monthly Total</span>
+                <span id="cart-total" class="text-2xl font-black text-purple-700 dark:text-purple-400">RM 0.00</span>
             </div>
-            <button onclick="switchTab('enroll'); scrollToInquiry();"
-                class="w-full purple-gradient py-4 rounded-xl font-black uppercase text-sm">
+            <button onclick="switchTab('enroll'); scrollToInquiry(); toggleCart();"
+                class="w-full purple-gradient text-white py-4 rounded-xl font-black uppercase text-sm tracking-widest shadow-lg shadow-purple-500/20 hover:brightness-110 transition-all">
                 Proceed to Checkout
             </button>
         </div>
@@ -219,287 +180,303 @@
 
     <!-- Navigation -->
     <nav
-        class="fixed top-0 left-0 h-full w-20 md:w-64 glass border-r border-purple-900/30 z-50 flex flex-col p-4 transition-all duration-300">
+        class="fixed top-0 left-0 h-full w-20 md:w-64 glass border-r border-purple-500/10 z-50 flex flex-col p-4 transition-all duration-300">
         <div class="flex items-center gap-3 mb-12 px-2">
             <div
-                class="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20 shrink-0">
+                class="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 shrink-0">
                 <i class="fas fa-graduation-cap text-white text-xl"></i>
             </div>
             <span class="text-xl font-black tracking-tighter hidden md:block uppercase">Beyond<span
-                    class="text-purple-500"> The Limit</span></span>
+                    class="text-purple-600">Limit</span></span>
         </div>
 
-        <div class="flex flex-col gap-4 w-full">
-            <a href="#home"
-                class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-home w-6"></i>
-                <span class="hidden md:block font-medium">Home</span>
+        <div class="flex flex-col gap-2 w-full">
+            <a href="#home" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-home w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Home</span>
             </a>
-            <a href="#packages"
-                class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-cart-plus w-6"></i>
-                <span class="hidden md:block font-medium">Packages</span>
+            <a href="#packages" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-th-large w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Packages</span>
             </a>
-            <a href="teachers.html"
-                class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-users w-6"></i>
-                <span class="hidden md:block font-medium">Meet Our Teachers</span>
+            <a href="About.html" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-info-circle w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">About Us</span>
+            </a>
+            <a href="Teachers.html" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-user-tie w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Meet the Teachers</span>
             </a>
             <a href="#inquiry" onclick="switchTab('enroll')"
-                class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-file-signature w-6"></i>
-                <span class="hidden md:block font-medium">Enroll Now</span>
+                class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-user-plus w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Enroll Now</span>
             </a>
-            <a href="#inquiry" onclick="switchTab('ask')"
-                class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-comment-dots w-6"></i>
-                <span class="hidden md:block font-medium">Academic Inquiry</span>
+            <a href="#inquiry" onclick="switchTab('ask')" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-question-circle w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Inquiry</span>
             </a>
         </div>
 
-        <!-- Theme Toggle -->
-        <div class="mt-auto px-2">
-            <button onclick="toggleTheme()" id="theme-toggle"
-                class="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-purple-900/20 transition-all text-gray-400 hover:text-white">
-                <i class="fas fa-moon w-6" id="theme-icon"></i>
-                <span class="hidden md:block font-medium" id="theme-text">Dark Mode</span>
-            </button>
+        <div class="mt-auto">
+            <!-- Footer or other info can go here -->
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="ml-20 md:ml-64 p-6 md:p-12">
+    <main class="ml-20 md:ml-64 p-6 md:p-12 max-w-7xl mx-auto">
 
-        <header id="home" class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div class="max-w-2xl">
-                <h1 class="text-4xl md:text-6xl font-black text-white uppercase">Academy <span
-                        class="text-purple-500">2026</span></h1>
-                <p class="text-gray-400 mt-4 italic">"The only way to define your limits is by going beyond them."</p>
+        <header id="home" class="mb-16">
+            <div class="max-w-3xl">
+                <div
+                    class="inline-block px-4 py-1 rounded-full bg-purple-500/10 text-purple-700 text-xs font-black uppercase tracking-widest mb-4">
+                    Welcome to the Future
+                </div>
+                <h1 class="text-4xl md:text-7xl font-black uppercase leading-none">
+                    Academy <span class="text-purple-700">2026</span>
+                </h1>
+                <p
+                    class="text-gray-600 dark:text-gray-400 mt-6 text-lg max-w-xl italic border-l-4 border-purple-600 pl-4">
+                    "The only way to define your limits is by going beyond them."
+                </p>
+
+                <!-- Partnership Badge -->
+                <div class="mt-10 animate-fade-in">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-purple-500 mb-3 block">Strategic
+                        Partner</span>
+                    <div
+                        class="inline-flex items-center gap-4 px-5 py-3 glass rounded-2xl border border-purple-500/20 shadow-sm hover:shadow-md transition-all group">
+                        <div
+                            class="w-10 h-10 bg-white rounded-lg flex items-center justify-center overflow-hidden shadow-inner border border-purple-100 p-1">
+                            <img src="mindappz-logo.png" alt="Mindappz logo"
+                                class="w-full h-full object-contain group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex flex-col">
+                            <span
+                                class="font-black uppercase tracking-tighter text-purple-900 leading-none text-lg">MIND<span
+                                    class="text-purple-600">APPZ</span></span>
+                            <span class="text-[9px] font-bold text-gray-500 uppercase tracking-wide">Official Platform
+                                Partner</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- Bulletin Board (Slider) -->
+        <!-- Bulletin Slider -->
         <section id="bulletin-board" class="mb-24">
-            <h2 class="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
-                <span class="w-12 h-1 purple-gradient rounded-full"></span>
-                Bulletin Board
-            </h2>
             <div
-                class="relative group rounded-[2.5rem] overflow-hidden glass border border-white/5 aspect-square max-w-2xl mx-auto shadow-2xl bg-black/20">
-                <!-- Slider Content -->
+                class="relative group rounded-[2.5rem] overflow-hidden glass aspect-video md:aspect-[21/9] w-full shadow-2xl bg-purple-900/5 border-purple-500/20">
                 <div id="bulletin-slider" class="relative w-full h-full flex items-center justify-center">
-                    <!-- JavaScript will inject content here -->
+                    <!-- JS Injected -->
                 </div>
 
-                <!-- Controls -->
-                <div
-                    class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-6 z-20 pointer-events-none">
-                    <button onclick="prevSlide()"
-                        class="w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-purple-600 hover:border-purple-500 pointer-events-auto shadow-lg hover:scale-110">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button onclick="nextSlide()"
-                        class="w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-purple-600 hover:border-purple-500 pointer-events-auto shadow-lg hover:scale-110">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <!-- Bottom Gradient Overlay -->
                 <div
                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
                 </div>
 
-                <!-- Labels -->
-                <div class="absolute bottom-10 left-10 z-20 max-w-lg">
+                <div class="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 max-w-2xl">
                     <span id="bulletin-tag"
-                        class="bg-purple-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">Announcement</span>
-                    <h3 id="bulletin-title" class="text-2xl md:text-4xl font-black uppercase text-white leading-tight">
-                        Beyond Limit Academy <br>2026 Intake Now Open</h3>
+                        class="bg-purple-700 text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest mb-4 inline-block">Featured</span>
+                    <h3 id="bulletin-title"
+                        class="text-2xl md:text-5xl font-black uppercase text-white leading-tight mb-2">
+                        Something Big is Coming
+                    </h3>
                 </div>
 
-                <!-- Dots -->
-                <div id="bulletin-dots" class="absolute bottom-10 right-10 z-20 flex gap-2">
-                    <!-- Dots injected by JS -->
-                </div>
+                <div id="bulletin-dots" class="absolute bottom-12 right-12 z-20 flex gap-2"></div>
             </div>
         </section>
 
-        <!-- Packages -->
+        <!-- Packages Grid -->
         <section id="packages" class="mb-24">
-            <h2 class="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
-                <span class="w-12 h-1 bg-purple-500 rounded-full"></span>
-                Select Packages
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <script>
-                    const packages = [
-                        { id: 1, name: "Preschool", price: 59, color: "red", subjects: "BM, English, Maths, Science" },
-                        { id: 2, name: "SK 1 / 2 / 3", price: 99, color: "blue", subjects: "BM, English, Maths, Science" },
-                        { id: 3, name: "SJKT 1 / 2 / 3", price: 99, color: "purple", subjects: "BM, English, Maths, Science, Tamil" },
-                        { id: 4, name: "SK 4 / 5 / 6", price: 109, color: "orange", subjects: "BM, BI, Maths, Science, Sejarah" },
-                        { id: 5, name: "Form 1 / 2 / 3", price: 109, color: "pink", subjects: "BM, BI, Maths, Science, Sejarah" },
-                        { id: 6, name: "Form 4 & 5 (Arts)", price: 129, color: "gray", subjects: "BM, BI, Maths, Science, Sejarah" },
-                        { id: 7, name: "Form 4 & 5 (Science)", price: 199, color: "green", subjects: "BM, BI, Fizik, Kimia, Bio, Add Maths" }
-                    ];
-                    document.write(packages.map(pkg => `
-                        <div class="glass price-card rounded-2xl overflow-hidden flex flex-col border border-white/5">
-                            <div class="p-5 bg-${pkg.color}-600/20 border-b border-${pkg.color}-500/20">
-                                <h4 class="font-bold text-${pkg.color}-400 text-sm uppercase">${pkg.name}</h4>
-                                <div class="text-2xl font-black text-white mt-1">RM ${pkg.price}.00</div>
-                            </div>
-                            <div class="p-5 flex-grow">
-                                <p class="text-[11px] text-gray-400 mb-6">${pkg.subjects}</p>
-                                <button onclick="addToCart(${pkg.id})" class="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-xs">
-                                    <i class="fas fa-plus-circle text-purple-500"></i> Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    `).join(''));
-                </script>
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="text-3xl font-black uppercase tracking-tighter">Packages</h2>
+                <div class="h-[2px] flex-grow bg-purple-500/30"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="package-grid">
+                <!-- JS Injected -->
             </div>
         </section>
 
-        <!-- Inquiry & Enrollment Section -->
+        <!-- Testimonials Section -->
+        <section class="mb-24">
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="text-3xl font-black uppercase tracking-tighter">Student & Parent Success</h2>
+                <div class="h-[2px] flex-grow bg-purple-500/30"></div>
+            </div>
+            <div class="glass p-6 md:p-10 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
+                <script src="https://widget.senja.io/widget/d2f7518a-8269-4123-abec-5f460757aa7a/platform.js"
+                    type="text/javascript" async></script>
+                <div class="senja-embed" data-id="d2f7518a-8269-4123-abec-5f460757aa7a" data-mode="shadow"
+                    data-lazyload="false" style="display: block; width: 100%;"></div>
+            </div>
+        </section>
+
+        <!-- Forms Section -->
         <section id="inquiry" class="mb-20 scroll-mt-24">
-            <div class="flex gap-8 mb-8 border-b border-white/10">
+            <div class="flex gap-4 md:gap-8 mb-8 border-b border-purple-500/20 overflow-x-auto">
                 <button id="tab-enroll" onclick="switchTab('enroll')"
-                    class="pb-4 text-sm font-black uppercase tracking-widest tab-active transition-all">
-                    1. Enrollment (Checkout)
+                    class="pb-4 text-xs md:text-sm font-black uppercase tracking-widest whitespace-nowrap transition-all opacity-50 tab-active">
+                    01. Enrollment
                 </button>
                 <button id="tab-ask" onclick="switchTab('ask')"
-                    class="pb-4 text-sm font-black uppercase tracking-widest text-gray-500 hover:text-white transition-all">
-                    2. Academic Inquiry (Advice)
+                    class="pb-4 text-xs md:text-sm font-black uppercase tracking-widest whitespace-nowrap transition-all opacity-50">
+                    02. Academic Inquiry
                 </button>
             </div>
 
-            <div class="glass p-8 md:p-12 rounded-[2rem] border border-white/5">
-
-                <!-- VIEW 1: ENROLLMENT / CHECKOUT -->
+            <div class="glass p-6 md:p-12 rounded-[2.5rem] shadow-xl border-purple-500/20">
+                <!-- Enrollment View -->
                 <div id="view-enroll" class="space-y-8">
-                    <h3 class="text-2xl font-black text-white uppercase">Finalize Registration</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parent Name</label>
-                            <input type="text" id="pNameEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <h3 class="text-2xl font-black uppercase tracking-tight">Registration Details</h3>
+                        <div
+                            class="text-xs font-bold text-purple-700 bg-purple-500/10 px-4 py-2 rounded-full uppercase">
+                            Secure Enrollment</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Parent
+                                Name</label>
+                            <input type="text" id="pNameEnroll" class="w-full rounded-2xl p-4 text-sm"
                                 placeholder="Full Name">
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Phone Number</label>
-                            <input type="tel" id="pPhoneEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Parent Phone
+                                Number (WhatsApp)</label>
+                            <input type="tel" id="pPhoneEnroll" class="w-full rounded-2xl p-4 text-sm"
                                 placeholder="01X-XXXXXXX">
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Parent
                                 Email</label>
-                            <input type="email" id="sEmailEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                                placeholder="example@gmail.com">
+                            <input type="email" id="pEmailEnroll" class="w-full rounded-2xl p-4 text-sm"
+                                placeholder="parent@example.com">
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parents
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Student
+                                Name</label>
+                            <input type="text" id="sNameEnroll" class="w-full rounded-2xl p-4 text-sm"
+                                placeholder="Student Full Name">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Student Date
+                                of Birth</label>
+                            <input type="date" id="sDobEnroll" class="w-full rounded-2xl p-4 text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Student
+                                Level</label>
+                            <input type="text" id="sLevelEnroll" class="w-full rounded-2xl p-4 text-sm"
+                                placeholder="e.g. Form 4, Standard 6">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Student
                                 Email</label>
-                            <input type="email" id="pEmailEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                                placeholder="example@gmail.com">
+                            <input type="email" id="sEmailEnroll" class="w-full rounded-2xl p-4 text-sm"
+                                placeholder="student@example.com">
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student Name</label>
-                            <input type="text" id="sNameEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                                placeholder="Student Name">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">School Name</label>
-                            <input type="text" id="sSchoolEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">School
+                                Name</label>
+                            <input type="text" id="sSchoolEnroll" class="w-full rounded-2xl p-4 text-sm"
                                 placeholder="School Name">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Date of
-                                Birth</label>
-                            <input type="date" id="sDobEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                                placeholder="Date of Birth">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Target Level</label>
-                            <select id="sLevelEnroll"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500">
-                                <option>Preschool</option>
-                                <option>Standard 1-3</option>
-                                <option>Standard 4-6</option>
-                                <option>Form 1-3</option>
-                                <option>Form 4-5</option>
-                            </select>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-purple-600/10 rounded-2xl border border-purple-500/20">
-                        <h5 class="text-purple-400 font-black text-[10px] uppercase mb-4 tracking-widest">Cart Summary
+                    <div class="p-6 bg-purple-500/10 rounded-[1.5rem] border border-purple-500/20">
+                        <h5
+                            class="text-purple-700 font-black text-[10px] uppercase mb-4 tracking-widest flex items-center gap-2">
+                            <i class="fas fa-list-ul"></i> Cart Summary
                         </h5>
-                        <div id="cart-summary-items" class="space-y-2 text-xs">
-                            <span class="text-gray-500 italic">No packages selected in cart.</span>
+                        <div id="cart-summary-items" class="space-y-3 text-sm">
+                            <span class="text-gray-500 italic">No packages selected.</span>
                         </div>
                     </div>
 
                     <button onclick="checkout()"
-                        class="w-full purple-gradient text-white font-black py-6 rounded-2xl shadow-xl flex items-center justify-center gap-4 text-lg">
-                        <i class="fab fa-whatsapp text-2xl"></i> CONFIRM & ENROLL
+                        class="w-full purple-gradient text-white font-black py-6 rounded-2xl shadow-xl flex items-center justify-center gap-4 text-lg hover:brightness-110 active:scale-[0.98] transition-all">
+                        <i class="fab fa-whatsapp text-2xl"></i> CONFIRM ENROLLMENT
                     </button>
                 </div>
 
-                <!-- VIEW 2: ACADEMIC INQUIRY -->
+                <!-- Inquiry View -->
                 <div id="view-ask" class="hidden space-y-8">
-                    <h3 class="text-2xl font-black text-white uppercase">Academic Consultation</h3>
-                    <p class="text-gray-400 text-sm">Not sure which package is best? Send us your student's details for
-                        a free assessment.</p>
+                    <h3 class="text-2xl font-black uppercase tracking-tight">Academic Consultation</h3>
+                    <p class="text-gray-600 text-sm">Send us a message for personalized package advice or specific
+                        subject concerns.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Parent Name</label>
-                            <input type="text" id="pNameAsk"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                                placeholder="Full Name">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Parent
+                                Name</label>
+                            <input type="text" id="pNameAsk" class="w-full rounded-2xl p-4 text-sm"
+                                placeholder="Your Name">
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Student
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Student
                                 Level</label>
-                            <input type="text" id="sLevelAsk"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
+                            <input type="text" id="sLevelAsk" class="w-full rounded-2xl p-4 text-sm"
                                 placeholder="e.g. Form 4">
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Academic Weaknesses /
-                            Concerns</label>
-                        <textarea id="weaknessAsk" rows="3"
-                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                            placeholder="Tell us what subjects the student struggles with..."></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 mb-2 uppercase">Latest Results
-                            (Optional)</label>
-                        <textarea id="resultsAsk" rows="2"
-                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm outline-none focus:border-purple-500"
-                            placeholder="e.g. BM: B, English: C, Maths: G..."></textarea>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-purple-700 uppercase tracking-widest">Specific
+                            Weaknesses / Goals</label>
+                        <textarea id="weaknessAsk" rows="4" class="w-full rounded-2xl p-4 text-sm"
+                            placeholder="Tell us more about the student's needs..."></textarea>
                     </div>
 
                     <button onclick="submitInquiry()"
-                        class="w-full bg-white/10 hover:bg-white/20 text-white font-black py-6 rounded-2xl border border-white/10 flex items-center justify-center gap-4 text-lg transition-all">
-                        <i class="fas fa-paper-plane"></i> SUBMIT INQUIRY
+                        class="w-full bg-purple-600/10 hover:bg-purple-600/20 text-purple-700 dark:text-purple-400 font-black py-6 rounded-2xl border border-purple-500/30 flex items-center justify-center gap-4 text-lg transition-all">
+                        <i class="fas fa-paper-plane"></i> SEND CONSULTATION REQUEST
                     </button>
                 </div>
-
             </div>
         </section>
     </main>
 
+    <footer
+        class="ml-20 md:ml-64 p-12 text-center text-gray-600 text-[10px] font-black uppercase tracking-widest border-t border-purple-500/10">
+        &copy; 2026 Beyond The Limit Academy. All Rights Reserved.
+    </footer>
+
     <script>
+        const packages = [
+            { id: 1, name: "Preschool", price: 59, subjects: "BM, English, Maths, Science" },
+            { id: 2, name: "SK 1 / 2 / 3", price: 99, subjects: "BM, English, Maths, Science" },
+            { id: 3, name: "SJKT 1 / 2 / 3", price: 99, subjects: "BM, English, Maths, Science, Tamil" },
+            { id: 4, name: "SK 4 / 5 / 6", price: 109, subjects: "BM, BI, Maths, Science, Sejarah" },
+            { id: 5, name: "Form 1 / 2 / 3", price: 109, subjects: "BM, BI, Maths, Science, Sejarah" },
+            { id: 6, name: "Form 4 & 5 (Arts)", price: 129, subjects: "BM, BI, Maths, Science, Sejarah" },
+            { id: 7, name: "Form 4 & 5 (Science)", price: 199, subjects: "BM, BI, Fizik, Kimia, Bio, Add Maths" }
+        ];
+
         let cart = [];
+
+        function renderPackages() {
+            const grid = document.getElementById('package-grid');
+            grid.innerHTML = packages.map(pkg => `
+                <div class="price-card rounded-3xl overflow-hidden flex flex-col group shadow-sm">
+                    <div class="p-6 bg-purple-500/10 border-b-2 border-purple-500/20">
+                        <span class="text-[11px] font-black uppercase tracking-widest text-purple-700 mb-2 block">${pkg.name}</span>
+                        <div class="text-3xl font-black text-purple-800 dark:text-purple-300">RM ${pkg.price}.00</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <p class="text-base text-black dark:text-black-300 mb-8 leading-relaxed font-bold">
+                            <i class="fas fa-book-open mr-2 text-purple-600"></i>${pkg.subjects}
+                        </p>
+                        <button onclick="addToCart(${pkg.id})" class="w-full bg-purple-600/10 hover:bg-purple-700 text-purple-700 hover:text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs border border-purple-500/20">
+                            <i class="fas fa-plus-circle"></i> ADD TO CART
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
         function switchTab(type) {
             const enrollTab = document.getElementById('tab-enroll');
@@ -526,8 +503,13 @@
                 cart.push(pkg);
                 updateCartUI();
                 const btn = event.currentTarget;
-                btn.innerHTML = '<i class="fas fa-check"></i> Added';
-                setTimeout(() => btn.innerHTML = '<i class="fas fa-plus-circle"></i> Add to Cart', 1000);
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> ADDED';
+                btn.classList.add('bg-green-600', 'text-white');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-600', 'text-white');
+                }, 1000);
             }
         }
 
@@ -555,26 +537,66 @@
             let sumHtml = "";
             cart.forEach(item => {
                 total += item.price;
-                html += `<div class="flex justify-between p-3 glass rounded-lg"><div><p class="text-sm font-bold">${item.name}</p></div><button onclick="removeFromCart(${item.id})" class="text-red-500"><i class="fas fa-trash"></i></button></div>`;
-                sumHtml += `<div class="flex justify-between"><span>${item.name}</span><span>RM ${item.price}</span></div>`;
+                html += `
+                    <div class="flex justify-between items-center p-4 glass rounded-2xl border-purple-500/30">
+                        <div>
+                            <p class="text-sm font-black text-purple-800 dark:text-purple-300 uppercase">${item.name}</p>
+                            <p class="text-[10px] text-gray-600">RM ${item.price}.00</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="w-8 h-8 rounded-full bg-red-600/10 text-red-600 hover:bg-red-600 hover:text-white transition-all flex items-center justify-center">
+                            <i class="fas fa-trash-alt text-xs"></i>
+                        </button>
+                    </div>`;
+                sumHtml += `<div class="flex justify-between font-bold"><span>${item.name}</span><span class="text-purple-700 font-black">RM ${item.price}</span></div>`;
             });
 
             container.innerHTML = html;
-            summary.innerHTML = sumHtml + `<div class="border-t border-white/10 mt-2 pt-2 flex justify-between font-black text-purple-400"><span>Total</span><span>RM ${total}.00</span></div>`;
+            summary.innerHTML = sumHtml + `<div class="border-t-2 border-purple-500/20 mt-4 pt-4 flex justify-between font-black text-purple-800 dark:text-purple-400 text-lg"><span>Total</span><span>RM ${total}.00</span></div>`;
             totalEl.textContent = `RM ${total}.00`;
         }
 
-        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('translate-x-full'); }
-        function scrollToInquiry() { document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' }); }
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        function scrollToInquiry() {
+            document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
+        }
 
         function checkout() {
-            const name = document.getElementById('pNameEnroll').value;
-            const phone = document.getElementById('pPhoneEnroll').value;
-            const student = document.getElementById('sNameEnroll').value;
-            if (!name || !phone || cart.length === 0) return alert("Fill details and add to cart first!");
+            const pName = document.getElementById('pNameEnroll').value;
+            const pPhone = document.getElementById('pPhoneEnroll').value;
+            const pEmail = document.getElementById('pEmailEnroll').value;
+            const sName = document.getElementById('sNameEnroll').value;
+            const sDob = document.getElementById('sDobEnroll').value;
+            const sLevel = document.getElementById('sLevelEnroll').value;
+            const sEmail = document.getElementById('sEmailEnroll').value;
+            const sSchool = document.getElementById('sSchoolEnroll').value;
 
-            const list = cart.map(i => `- ${i.name}`).join('%0A');
-            const msg = `*NEW ENROLLMENT*%0A%0A*Parent:* ${name}%0A*Phone:* ${phone}%0A*Student:* ${student}%0A%0A*Packages:*%0A${list}%0A%0ATotal: RM ${cart.reduce((a, b) => a + b.price, 0)}`;
+            if (!pName || !pPhone || !sName || cart.length === 0) {
+                alert("Please fill in the required fields and select at least one package.");
+                return;
+            }
+
+            const list = cart.map(i => `- ${i.name} (RM ${i.price})`).join('%0A');
+            const total = cart.reduce((a, b) => a + b.price, 0);
+
+            const msg = `*NEW ENROLLMENT 2026*%0A%0A` +
+                `*--- PARENT DETAILS ---*%0A` +
+                `*Name:* ${pName}%0A` +
+                `*Phone:* ${pPhone}%0A` +
+                `*Email:* ${pEmail}%0A%0A` +
+                `*--- STUDENT DETAILS ---*%0A` +
+                `*Name:* ${sName}%0A` +
+                `*DOB:* ${sDob}%0A` +
+                `*Level:* ${sLevel}%0A` +
+                `*Email:* ${sEmail}%0A` +
+                `*School:* ${sSchool}%0A%0A` +
+                `*--- PACKAGE DETAILS ---*%0A` +
+                `${list}%0A%0A` +
+                `*Total Monthly:* RM ${total}.00`;
+
             window.open(`https://wa.me/60142318840?text=${msg}`);
         }
 
@@ -582,14 +604,17 @@
             const name = document.getElementById('pNameAsk').value;
             const level = document.getElementById('sLevelAsk').value;
             const weak = document.getElementById('weaknessAsk').value;
-            const results = document.getElementById('resultsAsk').value;
-            if (!name) return alert("Enter your name!");
 
-            const msg = `*ACADEMIC INQUIRY*%0A%0A*Parent:* ${name}%0A*Level:* ${level}%0A*Concerns:* ${weak}%0A*Results:* ${results}`;
+            if (!name || !level) {
+                alert("Please enter your name and student level.");
+                return;
+            }
+
+            const msg = `*ACADEMIC INQUIRY*%0A%0A*Parent:* ${name}%0A*Level:* ${level}%0A*Details:* ${weak}`;
             window.open(`https://wa.me/60142318840?text=${msg}`);
         }
 
-        // Bulletin Slider Logic (later must insert image =/video here)
+        // Bulletin Slider Logic
         const bulletinData = [
             /* {
                  type: 'image',
@@ -599,15 +624,9 @@
              },
              {
                  type: 'image',
-                 url: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format&fit=crop',
-                 title: 'State-of-the-Art <br>Learning Environment',
-                 tag: 'Our Facility'
-             },
-             {
-                 type: 'image',
                  url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2104&auto=format&fit=crop',
-                 title: 'Meet Our Expert <br>Facilitators',
-                 tag: 'Faculty'
+                 title: 'Transforming Potential <br>Into Excellence',
+                 tag: 'Mission'
              }*/
         ];
 
@@ -617,43 +636,25 @@
         function initSlider() {
             const slider = document.getElementById('bulletin-slider');
             const dotsContainer = document.getElementById('bulletin-dots');
-            const title = document.getElementById('bulletin-title');
-            const tag = document.getElementById('bulletin-tag');
 
-            // Handle Empty State
             if (!bulletinData || bulletinData.length === 0) {
-                slider.innerHTML = `
-                    <div class="flex flex-col items-center justify-center text-center p-12">
-                        <div class="w-20 h-20 mb-6 rounded-3xl purple-gradient flex items-center justify-center animate-pulse">
-                            <i class="fas fa-star text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-3xl font-black uppercase text-white tracking-widest">Something Big <br>Coming Soon</h3>
-                    </div>
-                `;
-                title.style.display = 'none';
-                tag.style.display = 'none';
+                slider.innerHTML = `<div class="text-black font-black uppercase text-4xl opacity-20">2026 Intake</div>`;
                 return;
             }
 
             bulletinData.forEach((item, index) => {
-                // Create Slide
                 const slide = document.createElement('div');
                 slide.className = `slider-item ${index === 0 ? 'active' : ''}`;
-
-                if (item.type === 'video') {
-                    slide.innerHTML = `<video src="${item.url}" class="w-full h-full object-contain" autoplay muted loop playsinline></video>`;
-                } else {
-                    slide.innerHTML = `<img src="${item.url}" class="w-full h-full object-contain" alt="Bulletin item">`;
-                }
+                slide.innerHTML = `<img src="${item.url}" class="w-full h-full object-cover brightness-50" alt="Bulletin item">`;
                 slider.appendChild(slide);
 
-                // Create Dot
                 const dot = document.createElement('div');
-                dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+                dot.className = `slider-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all ${index === 0 ? 'active' : ''}`;
                 dot.onclick = () => goToSlide(index);
                 dotsContainer.appendChild(dot);
             });
 
+            updateSliderUI();
             startAutoPlay();
         }
 
@@ -673,13 +674,6 @@
         function nextSlide() {
             currentSlide = (currentSlide + 1) % bulletinData.length;
             updateSliderUI();
-            resetAutoPlay();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + bulletinData.length) % bulletinData.length;
-            updateSliderUI();
-            resetAutoPlay();
         }
 
         function goToSlide(index) {
@@ -689,7 +683,7 @@
         }
 
         function startAutoPlay() {
-            slideInterval = setInterval(nextSlide, 5000);
+            slideInterval = setInterval(nextSlide, 6000);
         }
 
         function resetAutoPlay() {
@@ -697,41 +691,12 @@
             startAutoPlay();
         }
 
-        // Theme Toggle Logic
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
 
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
 
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            updateThemeUI(isLight);
-        }
-
-        function updateThemeUI(isLight) {
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-
-            if (isLight) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                text.textContent = 'Light Mode';
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                text.textContent = 'Dark Mode';
-            }
-        }
-
-        // Init
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-            updateThemeUI(true);
-        }
-
-        // Initialize Slider
-        initSlider();
+        window.onload = () => {
+            renderPackages();
+            initSlider();
+        };
     </script>
 </body>
 

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Beyond The Limit Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        :root {
+            --bg-body: #f5f0ff;
+            --text-main: #1e1140;
+            --text-dim: #6d28d9;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(109, 40, 217, 0.3);
+            --nav-bg: #ffffff;
+            --card-hover: rgba(109, 40, 217, 0.08);
+            --accent: #7c3aed;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .purple-gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        }
+
+        .nav-link {
+            transition: var(--transition);
+            color: #4c1d95;
+        }
+
+        .nav-link:hover {
+            background: var(--card-hover);
+            color: var(--accent);
+        }
+
+        .feature-card {
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            20% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .animate-consultant {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 left-0 h-full w-20 md:w-64 glass border-r border-purple-500/10 z-50 flex flex-col p-4 transition-all duration-300">
+        <div class="flex items-center gap-3 mb-12 px-2">
+            <div
+                class="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 shrink-0">
+                <i class="fas fa-graduation-cap text-white text-xl"></i>
+            </div>
+            <span class="text-xl font-black tracking-tighter hidden md:block uppercase">Beyond<span
+                    class="text-purple-600">Limit</span></span>
+        </div>
+
+        <div class="flex flex-col gap-2 w-full text-sm">
+            <a href="Index.html" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-home w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Home</span>
+            </a>
+            <a href="About.html"
+                class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl bg-purple-500/10 text-purple-700">
+                <i class="fas fa-info-circle w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">About Us</span>
+            </a>
+            <a href="Teachers.html" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-user-tie w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Meet the Teachers</span>
+            </a>
+            <a href="Index.html#packages" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-th-large w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Packages</span>
+            </a>
+            <a href="Index.html#inquiry" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
+                <i class="fas fa-user-plus w-6 text-center"></i>
+                <span class="hidden md:block font-semibold">Enroll Now</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-20 md:ml-64 p-6 md:p-12 max-w-7xl mx-auto">
+
+        <header class="mb-12">
+            <div class="max-w-3xl">
+                <div
+                    class="inline-block px-4 py-1 rounded-full bg-purple-500/10 text-purple-700 text-xs font-black uppercase tracking-widest mb-4">
+                    About Beyond Limit
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black uppercase leading-tight">
+                    Redefining <span class="text-purple-700 text-gradient">Education</span> Excellence
+                </h1>
+            </div>
+        </header>
+
+        <!-- Featured Lead Consultant -->
+        <section class="mb-24 animate-consultant">
+            <div
+                class="relative glass p-8 md:p-12 rounded-[3.5rem] border-purple-500/20 shadow-2xl overflow-hidden group">
+                <!-- Background Decorative Elements -->
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700">
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl transition-all duration-700">
+                </div>
+
+                <div class="relative flex flex-col lg:flex-row gap-12 items-center">
+                    <!-- Image Container -->
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-[3rem] overflow-hidden purple-gradient p-1.5 shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 shine-effect">
+                            <div class="w-full h-full bg-white rounded-[2.8rem] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+                                    alt="Lead Education Consultant" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <!-- Floating Badge -->
+                        <div
+                            class="absolute -bottom-4 -right-4 bg-white px-6 py-3 rounded-2xl shadow-xl border border-purple-100 animate-bounce cursor-default">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-purple-900">Lead
+                                    Consultant</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-grow text-center lg:text-left">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-600 text-white text-[9px] font-black uppercase tracking-tighter mb-4">
+                            <i class="fas fa-star text-[7px]"></i> Academic Leadership
+                        </div>
+                        <h2
+                            class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4 text-purple-900 leading-none">
+                            Ms. Sarah Johnson
+                        </h2>
+                        <p class="text-xl font-medium text-purple-700/80 mb-6 italic leading-relaxed">
+                            "Guiding students through the maze of modern education with clarity, purpose, and
+                            result-driven strategies."
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto lg:mx-0">
+                            <div class="flex items-center gap-3 p-4 glass rounded-2xl border border-purple-500/10">
+                                <i class="fas fa-graduation-cap text-purple-600"></i>
+                                <span class="text-sm font-bold text-gray-700">12+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 glass rounded-2xl border border-purple-500/10">
+                                <i class="fas fa-brain text-purple-600"></i>
+                                <span class="text-sm font-bold text-gray-700">Psychology Specialist</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Get Section -->
+        <section class="mb-24">
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="text-3xl font-black uppercase tracking-tighter">What You Get</h2>
+                <div class="h-[2px] flex-grow bg-purple-500/30"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Revision Platform -->
+                <div class="feature-card glass p-8 rounded-[2rem] border-purple-500/20 shadow-xl">
+                    <div
+                        class="w-12 h-12 purple-gradient rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-purple-500/20">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3">Revision Platforms</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">A complete set of digital tools designed for
+                        comprehensive learning and subject mastery.</p>
+                    <ul class="space-y-2 text-xs font-bold text-purple-700 uppercase tracking-tight">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> Short Notes (Simple
+                            Learning)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> 10,000+ Practice
+                            Questions</li>
+                    </ul>
+                </div>
+
+                <!-- Live Classes -->
+                <div class="feature-card glass p-8 rounded-[2rem] border-purple-500/20 shadow-xl">
+                    <div
+                        class="w-12 h-12 purple-gradient rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-purple-500/20">
+                        <i class="fas fa-video text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3">Hybrid Learning</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Engage in high-energy interactive sessions
+                        with the flexibility of recorded replays.</p>
+                    <ul class="space-y-2 text-xs font-bold text-purple-700 uppercase tracking-tight">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> Interactive Live Classes
+                        </li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> Lifetime Recording
+                            Access</li>
+                    </ul>
+                </div>
+
+                <!-- Monitoring & Progress -->
+                <div class="feature-card glass p-8 rounded-[2rem] border-purple-500/20 shadow-xl">
+                    <div
+                        class="w-12 h-12 purple-gradient rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-purple-500/20">
+                        <i class="fas fa-chart-line text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3">Progress Tracking</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Dedicated systems to ensure both students and
+                        parents stay informed and focused.</p>
+                    <ul class="space-y-2 text-xs font-bold text-purple-700 uppercase tracking-tight">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> Parent Monitoring System
+                        </li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle"></i> Detailed Student Report
+                            Cards</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Why Choose Us -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
+                    <h2 class="text-5xl font-black uppercase mb-8 leading-none">Why Must <br><span
+                            class="text-purple-700">Join Us?</span></h2>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-6 items-start">
+                            <div
+                                class="w-10 h-10 border-2 border-purple-500 rounded-full flex items-center justify-center shrink-0 mt-1">
+                                <i class="fas fa-brain text-purple-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Boost Memory Power</h4>
+                                <p class="text-gray-600 text-sm">Creative Quizzers with a unique reward system
+                                    specifically engineered to enhance retention.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start">
+                            <div
+                                class="w-10 h-10 border-2 border-purple-500 rounded-full flex items-center justify-center shrink-0 mt-1">
+                                <i class="fas fa-robot text-purple-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Smart AI-Powered Learning</h4>
+                                <p class="text-gray-600 text-sm">Leveraging predictive analytics to identify student
+                                    weaknesses and goal alignment.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start">
+                            <div
+                                class="w-10 h-10 border-2 border-purple-500 rounded-full flex items-center justify-center shrink-0 mt-1">
+                                <i class="fas fa-smile-beam text-purple-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Engaging & Fun Studies</h4>
+                                <p class="text-gray-600 text-sm">Breaking the boredom of traditional learning with
+                                    interactive and gamified sessions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-12 rounded-[3rem] border-purple-500/20 shadow-2xl purple-gradient text-white">
+                    <h3 class="text-2xl font-black uppercase mb-6">Enroll Today!</h3>
+                    <p class="text-white/80 mb-8 italic">Join the fastest growing digital academy in 2026. Your journey
+                        beyond the limit starts here.</p>
+                    <div class="space-y-4">
+                        <a href="https://wa.me/601153078851" target="_blank"
+                            class="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-2xl border border-white/20 transition-all font-bold">
+                            <i class="fab fa-whatsapp text-2xl"></i>
+                            <span>Message Us: 011-53078851</span>
+                        </a>
+                        <div
+                            class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/20 font-bold">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span>Proven Improvement System</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonials Section -->
+            <section class="mb-24">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="text-3xl font-black uppercase tracking-tighter">What Parents Say</h2>
+                    <div class="h-[2px] flex-grow bg-purple-500/30"></div>
+                </div>
+                <div class="glass p-6 md:p-10 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
+                    <script src="https://widget.senja.io/widget/d2f7518a-8269-4123-abec-5f460757aa7a/platform.js"
+                        type="text/javascript" async></script>
+                    <div class="senja-embed" data-id="d2f7518a-8269-4123-abec-5f460757aa7a" data-mode="shadow"
+                        data-lazyload="false" style="display: block; width: 100%;"></div>
+                </div>
+            </section>
+
+    </main>
+
+    <footer
+        class="ml-20 md:ml-64 p-12 text-center text-gray-600 text-[10px] font-black uppercase tracking-widest border-t border-purple-500/10">
+        &copy; 2026 Beyond The Limit Academy. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>
