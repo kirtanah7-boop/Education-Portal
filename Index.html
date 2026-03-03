@@ -306,11 +306,13 @@
                 <h2 class="text-3xl font-black uppercase tracking-tighter">Student & Parent Success</h2>
                 <div class="h-[2px] flex-grow bg-purple-500/30"></div>
             </div>
-            <div class="glass p-6 md:p-10 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
-                <script src="https://widget.senja.io/widget/d2f7518a-8269-4123-abec-5f460757aa7a/platform.js"
-                    type="text/javascript" async></script>
-                <div class="senja-embed" data-id="d2f7518a-8269-4123-abec-5f460757aa7a" data-mode="shadow"
-                    data-lazyload="false" style="display: block; width: 100%;"></div>
+            <div class="glass p-2 md:p-4 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
+                <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
+                <iframe id="senja-collector-iframe"
+                    src="https://senja.io/p/beyond-the-limit-academy/r/QRvyPG?mode=embed" allow="camera;microphone"
+                    title="Senja form" frameborder="0" scrolling="no" width="100%" height="700"></iframe>
+                <script
+                    type="text/javascript">iFrameResize({ log: false, checkOrigin: false }, "#senja-collector-iframe");</script>
             </div>
         </section>
 
