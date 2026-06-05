@@ -97,14 +97,29 @@
         }
 
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0);    }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes shine {
-            0%   { left: -100%; }
-            20%  { left:  100%; }
-            100% { left:  100%; }
+            0% {
+                left: -100%;
+            }
+
+            20% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
 
         .animate-consultant {
@@ -153,8 +168,14 @@
             transform: scale(1.03);
         }
 
-        #theme-toggle-icon { font-size: 16px; transition: transform 0.5s ease; }
-        #theme-toggle:hover #theme-toggle-icon { transform: rotate(20deg); }
+        #theme-toggle-icon {
+            font-size: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        #theme-toggle:hover #theme-toggle-icon {
+            transform: rotate(20deg);
+        }
 
         /* Dark mode overrides for hardcoded Tailwind gray classes */
         [data-theme="dark"] .text-gray-600,
@@ -164,9 +185,13 @@
             color: #a0aec0 !important;
         }
 
-        [data-theme="dark"] footer { color: var(--footer-text); }
+        [data-theme="dark"] footer {
+            color: var(--footer-text);
+        }
 
-        [data-theme="dark"] .text-purple-900 { color: #c4b5fd !important; }
+        [data-theme="dark"] .text-purple-900 {
+            color: #c4b5fd !important;
+        }
     </style>
 </head>
 
@@ -249,8 +274,8 @@
                         <div
                             class="w-64 h-64 md:w-80 md:h-80 rounded-[3rem] overflow-hidden purple-gradient p-1.5 shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 shine-effect">
                             <div class="w-full h-full bg-white rounded-[2.8rem] overflow-hidden">
-                                <img src="\Education Portal\images\usha.jpg" alt="Lead Education Consultant">
-                                class="w-full h-full object-cover">
+                                <img src="images\usha.jpg" alt="Lead Education Consultant" class="w-full h-full object-cover">
+
                             </div>
                         </div>
                         <!-- Floating Badge -->
@@ -431,64 +456,91 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                     <!-- Card 1 -->
-                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
-                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div
+                        class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div
+                            class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700">
+                        </div>
                         <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="relative z-10">
                             <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
                             <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
-                                The classes helped my daughter strengthen her fundamentals and achieve better exam results. The teachers explain concepts clearly and patiently.
+                                The classes helped my daughter strengthen her fundamentals and achieve better exam
+                                results. The teachers explain concepts clearly and patiently.
                             </p>
                         </div>
                         <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
-                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                            <div
+                                class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">
+                                P</div>
                             <div>
-                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Improved Academic Performance</p>
-                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Year 6 Student</p>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟
+                                    Improved Academic Performance</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent
+                                    of Year 6 Student</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
-                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div
+                        class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div
+                            class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700">
+                        </div>
                         <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="relative z-10">
                             <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
                             <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
-                                The lessons are interactive and easy to follow. I feel more confident answering questions in school now.
+                                The lessons are interactive and easy to follow. I feel more confident answering
+                                questions in school now.
                             </p>
                         </div>
                         <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
-                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">S</div>
+                            <div
+                                class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">
+                                S</div>
                             <div>
-                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Engaging Learning Experience</p>
-                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Form 3 Student</p>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟
+                                    Engaging Learning Experience</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Form 3
+                                    Student</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
-                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div
+                        class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div
+                            class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700">
+                        </div>
                         <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="relative z-10">
                             <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
                             <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
-                                The instructors are dedicated and always willing to help. The learning environment is positive and encouraging.
+                                The instructors are dedicated and always willing to help. The learning environment is
+                                positive and encouraging.
                             </p>
                         </div>
                         <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
-                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                            <div
+                                class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">
+                                P</div>
                             <div>
-                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Supportive Teachers</p>
-                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Form 1 Student</p>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟
+                                    Supportive Teachers</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent
+                                    of Form 1 Student</p>
                             </div>
                         </div>
                     </div>
