@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
-        :root {
-            /* Refined Light Purple Theme - More Contrast */
+        /* ===== LIGHT MODE (default) ===== */
+        :root,
+        [data-theme="light"] {
             --bg-body: #f5f0ff;
             --text-main: #1e1140;
             --text-dim: #6d28d9;
@@ -24,7 +25,34 @@
             --input-border: #a78bfa;
             --nav-text: #4c1d95;
             --accent: #7c3aed;
+            --card-body-bg: rgba(255,255,255,0.95);
+            --teacher-card-overlay: #f5f0ff;
+            --text-muted: #4b5563;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #e9d5ff;
+            --toggle-icon-color: #7c3aed;
+        }
+
+        /* ===== DARK MODE ===== */
+        [data-theme="dark"] {
+            --bg-body: #0d0b1a;
+            --text-main: #ede9fe;
+            --text-dim: #a78bfa;
+            --glass-bg: rgba(22, 17, 45, 0.92);
+            --glass-border: rgba(139, 92, 246, 0.25);
+            --nav-bg: #110d25;
+            --card-hover: rgba(139, 92, 246, 0.12);
+            --card-border: #4c1d95;
+            --input-bg: #1a1535;
+            --input-border: #6d28d9;
+            --nav-text: #c4b5fd;
+            --accent: #a78bfa;
+            --card-body-bg: rgba(22,17,45,0.95);
+            --teacher-card-overlay: #0a0518;
+            --text-muted: #9ca3af;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #2d1f5e;
+            --toggle-icon-color: #facc15;
         }
 
         body {
@@ -38,6 +66,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .purple-gradient {
@@ -47,7 +76,7 @@
         .teacher-card {
             transition: var(--transition);
             border: 2px solid var(--card-border);
-            background: var(--glass-bg);
+            background: var(--card-body-bg);
         }
 
         .teacher-card:hover {
@@ -80,17 +109,49 @@
             color: var(--accent);
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 10px; }
+
+        /* ===== THEME TOGGLE BUTTON ===== */
+        #theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--toggle-bg);
+            color: var(--toggle-icon-color);
+            border: none;
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+            width: 100%;
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-body);
+        #theme-toggle:hover {
+            filter: brightness(1.15);
+            transform: scale(1.03);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #7c3aed;
-            border-radius: 10px;
+        #theme-toggle-icon { font-size: 16px; transition: transform 0.5s ease; }
+        #theme-toggle:hover #theme-toggle-icon { transform: rotate(20deg); }
+
+        /* Dark mode overrides for hardcoded Tailwind gray classes */
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .text-gray-500,
+        [data-theme="dark"] .text-gray-400 {
+            color: #a0aec0 !important;
+        }
+
+        /* Teacher card image gradient overlay adapts to dark mode via CSS var */
+        .teacher-card-img-overlay {
+            background: linear-gradient(to top, var(--teacher-card-overlay), transparent);
+            opacity: 0.85;
         }
     </style>
 </head>
@@ -132,8 +193,11 @@
             </a>
         </div>
 
-        <div class="mt-auto">
-            <!-- Footer or other info can go here -->
+        <div class="mt-auto pt-4">
+            <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+                <span id="theme-toggle-icon">🌙</span>
+                <span class="hidden md:inline" id="theme-toggle-label">Dark Mode</span>
+            </button>
         </div>
     </nav>
 
@@ -221,16 +285,15 @@
                 <div class="teacher-card rounded-[2.5rem] overflow-hidden flex flex-col group shadow-sm">
                     <div class="relative overflow-hidden aspect-[4/5]">
                         <img src="${t.img}" class="w-full h-full object-contain bg-purple-50 transition-transform duration-700 group-hover:scale-110" alt="${t.name}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#f5f0ff] via-transparent to-transparent opacity-80"></div>
-                        <div class="dark-mode-overlay absolute inset-0 bg-gradient-to-t from-[#0a0518] via-transparent to-transparent opacity-0 transition-opacity"></div>
+                        <div class="teacher-card-img-overlay absolute inset-0"></div>
                         <div class="absolute bottom-6 left-6">
-                            <span class="bg-purple-700 text-black text-[9px] font-black px-3 py-1 rounded-md uppercase tracking-widest shadow-lg">${Array.isArray(t.cat) ? t.cat.join(' / ') : t.cat}</span>
+                            <span class="bg-purple-700 text-white text-[9px] font-black px-3 py-1 rounded-md uppercase tracking-widest shadow-lg">${Array.isArray(t.cat) ? t.cat.join(' / ') : t.cat}</span>
                         </div>
                     </div>
                     <div class="p-8">
-                        <p class="text-purple-700 dark:text-purple-400 font-black text-xs uppercase tracking-tighter mb-1">${t.subject}</p>
-                        <h3 class="text-xl font-black text-black dark:text-white uppercase">${t.name}</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-xs mt-3 italic leading-relaxed font-semibold">${t.desc}</p>
+                        <p class="text-purple-600 font-black text-xs uppercase tracking-tighter mb-1" style="color: var(--accent);">${t.subject}</p>
+                        <h3 class="text-xl font-black uppercase" style="color: var(--text-main);">${t.name}</h3>
+                        <p class="text-xs mt-3 italic leading-relaxed font-semibold" style="color: var(--text-muted);">${t.desc}</p>
                     </div>
                 </div>
             `).join('');
@@ -249,8 +312,30 @@
 
 
 
+        // ===== THEME MANAGEMENT =====
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('btl-theme', theme);
+            const icon = document.getElementById('theme-toggle-icon');
+            const label = document.getElementById('theme-toggle-label');
+            if (theme === 'dark') {
+                icon.textContent = '☀️';
+                if (label) label.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                if (label) label.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
         // Init Theme
         window.onload = () => {
+            const saved = localStorage.getItem('btl-theme') || 'light';
+            applyTheme(saved);
             renderFaculty();
         };
     </script>

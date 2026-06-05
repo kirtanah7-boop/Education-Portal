@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -10,24 +10,51 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
-        :root {
-            /* Refined Light Purple Theme - More Contrast */
+        /* ===== LIGHT MODE (default) ===== */
+        :root,
+        [data-theme="light"] {
             --bg-body: #f5f0ff;
             --text-main: #1e1140;
             --text-dim: #6d28d9;
-            /* Deep Purple */
+            --text-muted: #4b5563;
             --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-border: rgba(109, 40, 217, 0.3);
-            /* Darker border */
             --nav-bg: #ffffff;
             --card-hover: rgba(109, 40, 217, 0.08);
             --card-border: #c4b5fd;
-            /* Visible violet border */
             --input-bg: #ffffff;
             --input-border: #a78bfa;
             --nav-text: #4c1d95;
             --accent: #7c3aed;
+            --card-body-bg: rgba(255,255,255,0.95);
+            --pkg-text: #1e1140;
+            --footer-text: #4b5563;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #e9d5ff;
+            --toggle-icon-color: #7c3aed;
+        }
+
+        /* ===== DARK MODE ===== */
+        [data-theme="dark"] {
+            --bg-body: #0d0b1a;
+            --text-main: #ede9fe;
+            --text-dim: #a78bfa;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(22, 17, 45, 0.92);
+            --glass-border: rgba(139, 92, 246, 0.25);
+            --nav-bg: #110d25;
+            --card-hover: rgba(139, 92, 246, 0.12);
+            --card-border: #4c1d95;
+            --input-bg: #1a1535;
+            --input-border: #6d28d9;
+            --nav-text: #c4b5fd;
+            --accent: #a78bfa;
+            --card-body-bg: rgba(22,17,45,0.95);
+            --pkg-text: #ede9fe;
+            --footer-text: #9ca3af;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #2d1f5e;
+            --toggle-icon-color: #facc15;
         }
 
         body {
@@ -42,6 +69,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .purple-gradient {
@@ -57,8 +85,7 @@
         .price-card {
             transition: var(--transition);
             border: 2px solid var(--card-border);
-            /* Thicker visible border */
-            background: var(--glass-bg);
+            background: var(--card-body-bg);
         }
 
         .price-card:hover {
@@ -72,25 +99,15 @@
         }
 
         @keyframes pulse-purple {
-            0% {
-                box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.6);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(109, 40, 217, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(109, 40, 217, 0);
-            }
+            0%  { box-shadow: 0 0 0 0   rgba(109, 40, 217, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(109, 40, 217, 0);   }
+            100%{ box-shadow: 0 0 0 0   rgba(109, 40, 217, 0);   }
         }
 
-        .pulse {
-            animation: pulse-purple 2.5s infinite;
-        }
+        .pulse { animation: pulse-purple 2.5s infinite; }
 
         .tab-active {
-            border-bottom: 3px solid #7c3aed;
+            border-bottom: 3px solid var(--accent);
             color: var(--accent) !important;
         }
 
@@ -101,28 +118,18 @@
             transition: opacity 0.8s ease-in-out;
         }
 
-        .slider-item.active {
-            opacity: 1;
-            z-index: 10;
-        }
+        .slider-item.active { opacity: 1; z-index: 10; }
 
-        .slider-dot.active {
-            background: #7c3aed;
-            width: 24px;
-        }
+        .slider-dot.active { background: #7c3aed; width: 24px; }
 
-        input,
-        select,
-        textarea {
+        input, select, textarea {
             background-color: var(--input-bg);
             border: 1.5px solid var(--input-border);
             color: var(--text-main);
             transition: var(--transition);
         }
 
-        input:focus,
-        select:focus,
-        textarea:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--accent) !important;
             box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
@@ -136,6 +143,77 @@
         .nav-link:hover {
             background: var(--card-hover);
             color: var(--accent);
+        }
+
+        /* ===== TESTIMONIAL CARDS ===== */
+        .testimonial-card {
+            transition: var(--transition);
+            border: 1.5px solid var(--card-border);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px -12px rgba(109, 40, 217, 0.25);
+            border-color: var(--accent);
+        }
+
+        /* ===== THEME TOGGLE BUTTON ===== */
+        #theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--toggle-bg);
+            color: var(--toggle-icon-color);
+            border: none;
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        #theme-toggle:hover {
+            filter: brightness(1.15);
+            transform: scale(1.03);
+        }
+
+        #theme-toggle-icon {
+            font-size: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        #theme-toggle:hover #theme-toggle-icon {
+            transform: rotate(20deg);
+        }
+
+        /* Dark mode text overrides for hardcoded Tailwind gray classes */
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .text-gray-500,
+        [data-theme="dark"] .text-gray-400 {
+            color: #a0aec0 !important;
+        }
+
+        [data-theme="dark"] footer {
+            color: var(--footer-text);
+        }
+
+        [data-theme="dark"] .price-card .p-6.bg-purple-500\/10 {
+            background: rgba(109, 40, 217, 0.18);
+        }
+
+        [data-theme="dark"] input::placeholder,
+        [data-theme="dark"] textarea::placeholder {
+            color: #6b7280;
+        }
+
+        /* Bulletin board dark overlay */
+        [data-theme="dark"] #bulletin-board .glass {
+            background: rgba(13, 11, 26, 0.7);
         }
     </style>
 </head>
@@ -218,8 +296,12 @@
             </a>
         </div>
 
-        <div class="mt-auto">
-            <!-- Footer or other info can go here -->
+        <div class="mt-auto pt-4">
+            <!-- Dark / Light Mode Toggle -->
+            <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+                <span id="theme-toggle-icon">🌙</span>
+                <span class="hidden md:inline" id="theme-toggle-label">Dark Mode</span>
+            </button>
         </div>
     </nav>
 
@@ -306,11 +388,71 @@
                 <h2 class="text-3xl font-black uppercase tracking-tighter">Student & Parent Success</h2>
                 <div class="h-[2px] flex-grow bg-purple-500/30"></div>
             </div>
-            <div class="glass p-6 md:p-10 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
-                <script src="https://widget.senja.io/widget/ff60286f-0e8f-4977-a4c0-e77f85b3f304/platform.js"
-                    type="text/javascript" async></script>
-                <div class="senja-embed" data-id="ff60286f-0e8f-4977-a4c0-e77f85b3f304" data-mode="shadow"
-                    data-lazyload="false" style="display: block; width: 100%;"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1 -->
+                <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                        <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                            The classes helped my daughter strengthen her fundamentals and achieve better exam results. The teachers explain concepts clearly and patiently.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                        <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Improved Academic Performance</p>
+                            <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Year 6 Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                        <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                            The lessons are interactive and easy to follow. I feel more confident answering questions in school now.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                        <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">S</div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Engaging Learning Experience</p>
+                            <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Form 3 Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                    <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                        <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                            The instructors are dedicated and always willing to help. The learning environment is positive and encouraging.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                        <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Supportive Teachers</p>
+                            <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Form 1 Student</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -693,7 +835,30 @@
 
 
 
+        // ===== THEME MANAGEMENT =====
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('btl-theme', theme);
+            const icon = document.getElementById('theme-toggle-icon');
+            const label = document.getElementById('theme-toggle-label');
+            if (theme === 'dark') {
+                icon.textContent = '☀️';
+                if (label) label.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                if (label) label.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
         window.onload = () => {
+            // Load saved theme (default: light)
+            const saved = localStorage.getItem('btl-theme') || 'light';
+            applyTheme(saved);
             renderPackages();
             initSlider();
         };

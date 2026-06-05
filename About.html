@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -10,16 +10,41 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
-        :root {
+        /* ===== LIGHT MODE (default) ===== */
+        :root,
+        [data-theme="light"] {
             --bg-body: #f5f0ff;
             --text-main: #1e1140;
             --text-dim: #6d28d9;
+            --text-muted: #4b5563;
             --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-border: rgba(109, 40, 217, 0.3);
             --nav-bg: #ffffff;
             --card-hover: rgba(109, 40, 217, 0.08);
+            --nav-text: #4c1d95;
             --accent: #7c3aed;
+            --footer-text: #4b5563;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #e9d5ff;
+            --toggle-icon-color: #7c3aed;
+        }
+
+        /* ===== DARK MODE ===== */
+        [data-theme="dark"] {
+            --bg-body: #0d0b1a;
+            --text-main: #ede9fe;
+            --text-dim: #a78bfa;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(22, 17, 45, 0.92);
+            --glass-border: rgba(139, 92, 246, 0.25);
+            --nav-bg: #110d25;
+            --card-hover: rgba(139, 92, 246, 0.12);
+            --nav-text: #c4b5fd;
+            --accent: #a78bfa;
+            --footer-text: #9ca3af;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --toggle-bg: #2d1f5e;
+            --toggle-icon-color: #facc15;
         }
 
         body {
@@ -27,12 +52,14 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .purple-gradient {
@@ -41,12 +68,24 @@
 
         .nav-link {
             transition: var(--transition);
-            color: #4c1d95;
+            color: var(--nav-text);
         }
 
         .nav-link:hover {
             background: var(--card-hover);
             color: var(--accent);
+        }
+
+        /* ===== TESTIMONIAL CARDS ===== */
+        .testimonial-card {
+            transition: var(--transition);
+            border: 1.5px solid var(--card-border);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px -12px rgba(109, 40, 217, 0.25);
+            border-color: var(--accent);
         }
 
         .feature-card {
@@ -58,29 +97,14 @@
         }
 
         @keyframes slideUpFade {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0);    }
         }
 
         @keyframes shine {
-            0% {
-                left: -100%;
-            }
-
-            20% {
-                left: 100%;
-            }
-
-            100% {
-                left: 100%;
-            }
+            0%   { left: -100%; }
+            20%  { left:  100%; }
+            100% { left:  100%; }
         }
 
         .animate-consultant {
@@ -103,6 +127,46 @@
             transform: skewX(-25deg);
             animation: shine 4s infinite;
         }
+
+        /* ===== THEME TOGGLE BUTTON ===== */
+        #theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--toggle-bg);
+            color: var(--toggle-icon-color);
+            border: none;
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        #theme-toggle:hover {
+            filter: brightness(1.15);
+            transform: scale(1.03);
+        }
+
+        #theme-toggle-icon { font-size: 16px; transition: transform 0.5s ease; }
+        #theme-toggle:hover #theme-toggle-icon { transform: rotate(20deg); }
+
+        /* Dark mode overrides for hardcoded Tailwind gray classes */
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .text-gray-500,
+        [data-theme="dark"] .text-gray-400,
+        [data-theme="dark"] .text-gray-700 {
+            color: #a0aec0 !important;
+        }
+
+        [data-theme="dark"] footer { color: var(--footer-text); }
+
+        [data-theme="dark"] .text-purple-900 { color: #c4b5fd !important; }
     </style>
 </head>
 
@@ -120,7 +184,7 @@
                     class="text-purple-600">Limit</span></span>
         </div>
 
-        <div class="flex flex-col gap-2 w-full text-sm">
+        <div class="flex flex-col gap-2 w-full text-sm" id="nav-links">
             <a href="Index.html" class="nav-link flex items-center gap-4 px-4 py-3 rounded-xl">
                 <i class="fas fa-home w-6 text-center"></i>
                 <span class="hidden md:block font-semibold">Home</span>
@@ -142,6 +206,13 @@
                 <i class="fas fa-user-plus w-6 text-center"></i>
                 <span class="hidden md:block font-semibold">Enroll Now</span>
             </a>
+        </div>
+
+        <div class="mt-auto pt-4">
+            <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+                <span id="theme-toggle-icon">🌙</span>
+                <span class="hidden md:inline" id="theme-toggle-label">Dark Mode</span>
+            </button>
         </div>
     </nav>
 
@@ -357,11 +428,71 @@
                     <h2 class="text-3xl font-black uppercase tracking-tighter">What Parents Say</h2>
                     <div class="h-[2px] flex-grow bg-purple-500/30"></div>
                 </div>
-                <div class="glass p-6 md:p-10 rounded-[2.5rem] border-purple-500/20 shadow-xl overflow-hidden">
-                    <script src="https://widget.senja.io/widget/ff60286f-0e8f-4977-a4c0-e77f85b3f304/platform.js"
-                        type="text/javascript" async></script>
-                    <div class="senja-embed" data-id="ff60286f-0e8f-4977-a4c0-e77f85b3f304" data-mode="shadow"
-                        data-lazyload="false" style="display: block; width: 100%;"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Card 1 -->
+                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                        <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                            <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                                The classes helped my daughter strengthen her fundamentals and achieve better exam results. The teachers explain concepts clearly and patiently.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Improved Academic Performance</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Year 6 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                        <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                            <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                                The lessons are interactive and easy to follow. I feel more confident answering questions in school now.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">S</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Engaging Learning Experience</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Form 3 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="testimonial-card glass rounded-[2rem] p-8 flex flex-col gap-5 shadow-lg border-purple-500/20 relative overflow-hidden group">
+                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-700"></div>
+                        <div class="flex items-center gap-1 text-yellow-400 text-sm relative z-10">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="text-4xl text-purple-400 font-black leading-none select-none">"</span>
+                            <p class="text-sm leading-relaxed font-medium -mt-2" style="color: var(--text-main);">
+                                The instructors are dedicated and always willing to help. The learning environment is positive and encouraging.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-purple-500/20 relative z-10">
+                            <div class="w-10 h-10 purple-gradient rounded-full flex items-center justify-center text-white font-black text-sm shrink-0">P</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest" style="color: var(--accent);">🌟 Supportive Teachers</p>
+                                <p class="text-[11px] font-semibold mt-0.5" style="color: var(--text-muted);">— Parent of Form 1 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -371,6 +502,32 @@
         class="ml-20 md:ml-64 p-12 text-center text-gray-600 text-[10px] font-black uppercase tracking-widest border-t border-purple-500/10">
         &copy; 2026 Beyond The Limit Academy. All Rights Reserved.
     </footer>
+
+    <script>
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('btl-theme', theme);
+            const icon = document.getElementById('theme-toggle-icon');
+            const label = document.getElementById('theme-toggle-label');
+            if (theme === 'dark') {
+                icon.textContent = '☀️';
+                if (label) label.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                if (label) label.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('btl-theme') || 'light';
+            applyTheme(saved);
+        });
+    </script>
 
 </body>
 
